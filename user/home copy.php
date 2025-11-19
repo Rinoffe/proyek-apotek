@@ -10,12 +10,6 @@
     <style>
         header{
             background-color: #1c794a;
-            position: sticky;
-            top: 0;
-        }
-        .sidebar {
-            position: sticky;
-            top: 128px;
         }
         .gambar-produk img{
             width: 100%;
@@ -25,7 +19,7 @@
         a {
             text-decoration: none;
             color: black;
-        }        
+        }
     </style>
 </head>
 
@@ -51,40 +45,33 @@
         </div>
     </header>
     
-    <div class="row g-0">
-        <div class="col-lg-2 sidebar mt-3" style="height: 100%">
-            <div class="m-3 p-1" style="background-color: #a7a7a7ff">
-                assafasf
-            </div>
+    <div class="m-3 row" >
+
+        <?php
+            include ('../connection.php');
+            $sql = "SELECT * FROM obat";
+            $query = mysqli_query($connect, $sql);
+            while($data = mysqli_fetch_array($query)){
+        ?>
+
+        <div class="col-md-4 col-lg-2 p-0">
+            <a href="produk.php?id=<?=$data['id_obat']?>">
+                <div class="m-3 me-1 p-0 border rounded" style="height: 350px;">
+                    <div class="gambar-produk border" style="height: 70%";>
+                        <img src="../images/<?=$data['gambar']?>" alt="foto produk">
+                    </div>
+                    <div class="d-flex flex-column justify-content-between p-2" style="height: 30%;">
+                        <h5 class="text-truncate"><?=$data['nama_obat']?></h5>
+                        <p class="m-0">Stok: <?=$data['stok']?></p>
+                        <h5 class="m-0">Rp. <?=$data['harga']?></h5>
+                    </div>
+                </div>
+            </a>
+            
         </div>
 
-        <div class="col-lg-10 etalase">
-            <div class="row m-3 g-0">
-                <?php
-                    include ('../connection.php');
-                    $sql = "SELECT * FROM obat";
-                    $query = mysqli_query($connect, $sql);
-                    while($data = mysqli_fetch_array($query)){
-                ?>
-                    
-                <div class="col-md-4 col-lg-3 p-0">
-                    <a href="produk.php?id=<?=$data['id_obat']?>">
-                        <div class="produk m-3 p-0 border rounded shadow" style="height: 350px;">
-                            <div class="gambar-produk border-bottom" style="height: 70%";>
-                                <img src="../images/<?=$data['gambar']?>" alt="foto produk">
-                            </div>
-                            <div class="d-flex flex-column justify-content-between p-2" style="height: 30%;">
-                                <h5 class="text-truncate"><?=$data['nama_obat']?></h5>
-                                <p class="m-0 text-secondary">Stok: <?=$data['stok']?></p>
-                                <h5 class="m-0">Rp. <?=number_format($data['harga'], 0, ',', '.')?></h5>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                    
-                <?php } ?>
-            </div>
-        </div>
+        <?php } ?>
+
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
