@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 13, 2025 at 06:00 AM
+-- Generation Time: Nov 17, 2025 at 03:10 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -30,6 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `cart` (
   `id_cart` int(11) NOT NULL,
   `username` varchar(50) DEFAULT NULL,
+  `nama_obat` varchar(100) DEFAULT NULL,
   `id_obat` int(11) DEFAULT NULL,
   `qty` int(11) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -43,6 +44,7 @@ CREATE TABLE `cart` (
 CREATE TABLE `history` (
   `id_history` int(11) NOT NULL,
   `username` varchar(50) DEFAULT NULL,
+  `nama_obat` varchar(100) DEFAULT NULL,
   `id_obat` int(11) DEFAULT NULL,
   `qty` int(11) DEFAULT 1,
   `total_harga` decimal(10,2) DEFAULT NULL,
