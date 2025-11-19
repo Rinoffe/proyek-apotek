@@ -74,9 +74,9 @@
 
         <?php } ?>
 
-        <div class="card p-3">
+        <div class="card p-3 checkout-summary">
             <h4>Total Harga: <span class="text-success">Rp <?=number_format($total, 0, ',', '.')?></span></h4>
-            <button class="btn btn-primary w-100 mt-3">Checkout</button>
+            <a href="checkout.php" class="btn btn-primary w-100 mt-3">Checkout</a>
         </div>
 
     </div>
