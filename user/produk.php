@@ -4,6 +4,7 @@
         header("Location: ../login.php");
         exit;
     }
+    $username = $_SESSION['username'];
 ?>
 
 <!doctype html>
@@ -38,15 +39,15 @@
             <h2 class="text-white mb-0">Apotek K25</h2>
         </a>
         <div class="d-flex flex-wrap justify-content-end">
-            <a href="cart.php" class="btn btn-light me-4 fs-5">🛒 Cart</a>
+            <a href="cart.php" class="btn btn-light me-4">Cart</a>
             <div class="dropdown">
-                <button type="button" class="btn btn-primary dropdown-toggle fs-5" data-bs-toggle="dropdown">ADMIN</button>
+                <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"><?=$username?>'s</button>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="#">Edit</a></li>
-                    <li><a class="dropdown-item text-danger" href="#">Logout</a></li>
+                    <li><a class="dropdown-item text-danger" href="../logout.php">Logout</a></li>
                     <li><hr class="dropdown-divider"></hr></li>
                     <li><a class="dropdown-item" href="#">History</a></li>
-                    <li><a class="dropdown-item" href="#">Announcement</a></li>
+                    <li><a class="dropdown-item" href="#">Status Pesanan</a></li>
                 </ul>
             </div>
         </div>
@@ -71,7 +72,7 @@
     ?>
 
     <div class="m-5 mt-3 row">
-        <div class="col-md-5">
+        <div class="col-md-5 p-0">
             <div class="m-2 gambar-produk">
                 <img src="../images/<?=$data['gambar']?>" alt="foto produk" class="border rounded shadow">
             </div>
@@ -93,6 +94,7 @@
                                 <span class="input-group-text fw-bold">Qty</span>
                                 <input type="number" class="form-control" name="qty" min="1" max="<?=$data['stok']?>" value="<?=$qty?>" required>
                             </div>
+                            <input type="hidden" name="from" value="produk">
                             <input type="hidden" name="id_obat" value="<?=$data['id_obat']?>">
                             <div class="col">
                                 <button type="submit" class="btn btn-primary">Tambahkan</button>

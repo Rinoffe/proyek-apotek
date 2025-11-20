@@ -16,5 +16,6 @@
         $update = "UPDATE cart SET qty = '$qty' WHERE id_obat = '$id' AND username = '$username'";
         mysqli_query($connect, $update);
     }
+
     header("location: ../user/produk.php?id=$id&qty=$qty&success=1");
 ?>

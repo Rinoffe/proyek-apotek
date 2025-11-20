@@ -4,6 +4,7 @@
         header("Location: ../login.php");
         exit;
     }
+    $username = $_SESSION['username'];
 ?>
 
 <!doctype html>
@@ -48,13 +49,13 @@
         <div class="d-flex flex-wrap justify-content-end">
             <a href="cart.php" class="btn btn-light me-4">Cart</a>
             <div class="dropdown">
-                <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">ADMIN</button>
+                <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"><?=$username?>'s</button>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="#">Edit</a></li>
-                    <li><a class="dropdown-item text-danger" href="#">Logout</a></li>
+                    <li><a class="dropdown-item text-danger" href="../logout.php">Logout</a></li>
                     <li><hr class="dropdown-divider"></hr></li>
                     <li><a class="dropdown-item" href="#">History</a></li>
-                    <li><a class="dropdown-item" href="#">Announcement</a></li>
+                    <li><a class="dropdown-item" href="#">Status Pesanan</a></li>
                 </ul>
             </div>
         </div>
