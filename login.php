@@ -83,10 +83,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body style="background-color: #f4f4f4;">
 
     <header class="header-custom d-flex flex-wrap justify-content-start align-items-center p-3 px-5">
-        <a href="home.php" class="d-flex align-items-center text-decoration-none">
+        <div class="d-flex align-items-center text-decoration-none">
             <img src="asset/logo.png" alt="logo apotek" height="80" class="me-2">
             <h2 class="text-white mb-0">Apotek K25</h2>
-        </a>
+        </div>
     </header>
     
     <div class="container my-5">

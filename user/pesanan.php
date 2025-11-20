@@ -66,9 +66,9 @@
     </header>
     
     <div class="container m-4 mx-auto">
-        <h3>Status Pesanan</h3><br>
+        <h3 class="m-0">Status Pesanan</h3><br>
 
-        <table class="table table-striped table-bordered th-color">
+        <table class="table table-striped table-bordered th-color shadow" style="border-radius: 12px; overflow: hidden;">
             <tr>
                 <th>ID Transaksi</th>
                 <th>Tanggal Transaksi</th>

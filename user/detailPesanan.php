@@ -67,17 +67,18 @@
     
     <div class="container m-4 mx-auto">
         <div class="d-flex flex-wrap justify-content-between align-items-center">
-            <h3>Detail Transaksi</h3>
-            <span><a href="pesanan.php" class="btn btn-success">🡸</a> Kembali</span>
-            </form>
-
+            <h3 class="m-0">Detail Transaksi</h3>
+            <div class="d-flex align-items-center gap-2">
+                <a href="pesanan.php" class="btn btn-success">🡸</a>
+                <span class="fs-4 fw-bold p-0">Kembali</span>
+            </div>
         </div><br>
 
         <?php
             include('../connection.php');
             $id = $_GET['id'];
 
-            $sql = "SELECT o.nama_obat, o.harga, o.gambar, td.qty
+            $sql = "SELECT td.id_obat, o.nama_obat, o.harga, o.gambar, td.qty
                     FROM transaksi t
                     JOIN transaksi_detail td ON t.id_transaksi = td.id_transaksi
                     JOIN obat o ON td.id_obat = o.id_obat
@@ -90,22 +91,19 @@
                 $total += $subtotal;
         ?>
 
-        <div class="card d-flex flex-row align-items-start gap-3 p-0 mb-2">
+        <div class="card d-flex flex-row align-items-center gap-3 p-0 mb-2">
             <img src="../images/<?=$data['gambar']?>" class="rounded cart-img" alt="foto produk">
             <div class="flex-grow-1 p-2">
                 <a href="produk.php?id=<?=$data['id_obat']?>">
                     <h5 class="mb-1"><?=$data['nama_obat']?></h5>
                 </a>
-                <p class="m-0"><?=$data['stok']?> x Rp. <?=number_format($data['harga'], 0, ',', '.')?></p>
-                <p class="fw-bold m-0">Total: Rp <?=number_format($data['harga'] * $data['qty'], 0, ',', '.')?></p>
+                <p class="m-0"><?=$data['qty']?> x Rp. <?=number_format($data['harga'], 0, ',', '.')?></p>                
             </div>
-            <div class="d-flex flex-column align-items-end p-2">
-                <p class="mb-0 text-muted"><small>23 Mei 2005</small></p>
-                <p class="mb-0 text-muted"><small>Tunai</small></p>
-            </div>
+            <p class="fw-bold m-0 p-2">Subtotal: Rp <?=number_format($subtotal, 0, ',', '.')?></p>
         </div>
 
         <?php } ?>
+        <h4>Total Harga: <span class="text-success">Rp <?=number_format($total, 0, ',', '.')?></span></h4>
 
     </div>
 

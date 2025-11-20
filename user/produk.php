@@ -55,7 +55,7 @@
 
     <div class="container m-4 mx-auto d-flex align-items-center gap-3">
         <a href="home.php" class="btn btn-success px-4 fs-6">🡸</a>
-        <h3 >Produk</h3>
+        <h3>Produk</h3>
     </div>
 
     <?php
