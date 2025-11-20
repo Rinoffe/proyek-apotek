@@ -5,18 +5,6 @@
         exit;
     }
     $username = $_SESSION['username'];
-
-    if (isset($_POST['hapus_history'])) {
-    include('../connection.php');
-    $username = $_SESSION['username'];
-
-    $delete = "DELETE FROM cart WHERE username='$username'";
-    mysqli_query($connect, $delete);
-
-    header("Location: history.php");
-    exit;
-}
-
 ?>
 
 <!doctype html>
@@ -79,28 +67,27 @@
     
     <div class="container m-4 mx-auto">
         <div class="d-flex flex-wrap justify-content-between align-items-center">
-            <h3>Sejarah Pembelian</h3>
-            <form action="history.php" method="POST">
-                <button type="submit" name="hapus_history" class="btn btn-danger m-0">
-                    Hapus Semua History
-                </button>
+            <h3>Detail Transaksi</h3>
+            <span><a href="pesanan.php" class="btn btn-success">🡸</a> Kembali</span>
             </form>
 
         </div><br>
 
         <?php
             include('../connection.php');
-            $sql = "SELECT c.id_obat, o.nama_obat, o.harga, c.qty, o.stok, o.gambar
-                    FROM obat o JOIN cart c ON o.id_obat = c.id_obat
-                    WHERE c.username = '$_SESSION[username]'";
+            $id = $_GET['id'];
+
+            $sql = "SELECT o.nama_obat, o.harga, o.gambar, td.qty
+                    FROM transaksi t
+                    JOIN transaksi_detail td ON t.id_transaksi = td.id_transaksi
+                    JOIN obat o ON td.id_obat = o.id_obat
+                    WHERE t.id_transaksi = '$id'";
             $query = mysqli_query($connect, $sql);
 
-            $total = 0;
-            $stokhabis = false;
-
+            $total = $subtotal = 0;
             while($data = mysqli_fetch_array($query)){
-                $total += $data['harga'] * $data['qty'];
-                if ($data['stok'] == 0) $stokhabis = true;
+                $subtotal = $data['harga'] * $data['qty'];
+                $total += $subtotal;
         ?>
 
         <div class="card d-flex flex-row align-items-start gap-3 p-0 mb-2">

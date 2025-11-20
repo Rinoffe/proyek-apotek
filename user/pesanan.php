@@ -70,11 +70,28 @@
 
         <table class="table table-striped table-bordered th-color">
             <tr>
-                <th>Order ID</th>
-                <th>Tanggal Pesan</th>
+                <th>ID Transaksi</th>
+                <th>Tanggal Transaksi</th>
                 <th>Detail</th>
                 <th>Status</th>
             </tr>
+
+            <?php
+                include ('../connection.php');
+
+                $sql = "SELECT * FROM transaksi";
+                $query = mysqli_query($connect, $sql);
+                while ($data = mysqli_fetch_array($query)) { ?>
+                    
+            <tr>
+                <td><?=$data['id_transaksi']?></td>
+                <td><?=$data['tanggal']?></td>
+                <td><a href="detailPesanan.php?id=<?=$data['id_transaksi']?>" class="btn btn-primary btn-sm">Detail</a></td>
+                <td><?=$data['status']?></td>
+            </tr>
+
+            <?php } ?>
+
         </table>
 
     </div>

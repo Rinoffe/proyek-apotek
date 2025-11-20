@@ -7,15 +7,15 @@
     $username = $_SESSION['username'];
 
     if (isset($_POST['hapus_history'])) {
-        include('../connection.php');
-        $username = $_SESSION['username'];
+    include('../connection.php');
+    $username = $_SESSION['username'];
 
-        $delete = "DELETE FROM history WHERE username='$username'";
-        mysqli_query($connect, $delete);
+    $delete = "DELETE FROM cart WHERE username='$username'";
+    mysqli_query($connect, $delete);
 
-        header("Location: history.php");
-        exit;
-    }
+    header("Location: history.php");
+    exit;
+}
 
 ?>
 

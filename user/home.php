@@ -79,7 +79,7 @@
                     
                 <div class="col-md-4 col-lg-3 p-0">
                     <a href="produk.php?id=<?=$data['id_obat']?>">
-                        <div class="produk m-3 p-0 border rounded shadow" style="height: 350px;">
+                        <div class="produk m-3 p-0 border rounded shadow-sm" style="height: 350px;">
                             <div class="gambar-produk border-bottom" style="height: 70%";>
                                 <img src="../images/<?=$data['gambar']?>" alt="foto produk">
                             </div>
