@@ -23,14 +23,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         
         
-        $stmt = $conn->prepare("SELECT username, nama, password FROM users WHERE username = ?");
+        $stmt = $conn->prepare("SELECT username, nama, password, role FROM users WHERE username = ?");
         $stmt->bind_param("s", $input_username);
         $stmt->execute();
         $stmt->store_result();
         
         if ($stmt->num_rows == 1) {
             
-            $stmt->bind_result($db_username, $db_nama, $hashed_password);
+            $stmt->bind_result($db_username, $db_nama, $hashed_password, $db_role);
             $stmt->fetch();
             
             
@@ -39,9 +39,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 
                 $_SESSION['loggedin'] = TRUE;
                 $_SESSION['username'] = $db_username;
+                $_SESSION['role'] = $db_role;
                 
-                header("Location: user/home.php");
-                exit;
+                if ($db_role == 'admin') {
+                    header("Location: admin/produk.html");
+                    exit;
+                }else{
+                    header("Location: user/home.php");
+                    exit;
+                }
             } else {
                 $message = "<span class='text-danger'>Error: Password yang dimasukkan salah.</span>";
             }
