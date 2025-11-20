@@ -51,9 +51,9 @@
                 </ul>
             </div>
         </div>
-    </header><br>
+    </header>
 
-    <div class="container mx-auto">
+    <div class="container m-4 mx-auto">
         <div class="d-flex flex-wrap justify-content-between align-items-center">
             <h3>Produk</h3>
             <a href="" class="btn btn-success">Tambah Produk</a>

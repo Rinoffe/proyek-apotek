@@ -53,9 +53,9 @@
         </div>
     </header>
 
-    <div class="ms-5 mt-4 d-flex align-items-center gap-3">
-        <a href="home.php" class="btn btn-success px-4 fs-5">🡸</a>
-        <h2>Produk</h2>
+    <div class="container m-4 mx-auto d-flex align-items-center gap-3">
+        <a href="home.php" class="btn btn-success px-4 fs-6">🡸</a>
+        <h3 >Produk</h3>
     </div>
 
     <?php
@@ -71,7 +71,7 @@
         }
     ?>
 
-    <div class="m-5 mt-3 row">
+    <div class="container m-4 mx-auto row">
         <div class="col-md-5 p-0">
             <div class="m-2 gambar-produk">
                 <img src="../images/<?=$data['gambar']?>" alt="foto produk" class="border rounded shadow">
@@ -85,7 +85,7 @@
                 <div class="card p-4 mb-4" style="background-color: #ffffffff;">
                     <p class="m-0"><?=$data['deskripsi']?></p>
                 </div>
-                <h4 class="pb-4">Stok: <?=$data['stok']?></h4>
+                <h5 class="pb-4">Stok: <?=$data['stok']?></h5>
 
                 <div class="d-flex">
                     <form action="cartProses.php" method="POST">

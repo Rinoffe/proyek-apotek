@@ -53,7 +53,7 @@
         </div>
     </header>
     
-    <div class="container my-5">
+    <div class="container m-4 mx-auto">
         <div class="row">
             
             <!-- LIST PRODUK -->
@@ -98,7 +98,7 @@
             <!-- FORM KANAN -->
             <div class="col-lg-5">
                 <h2 class="mb-4">Checkout</h2>
-                <form action="" method="POST">
+                <form action="checkoutProses.php" method="POST">
 
                     <div class="mb-3">
                         <label class="form-label fw-bold">Alamat Pengiriman</label>

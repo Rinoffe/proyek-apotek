@@ -51,12 +51,10 @@
                 </ul>
             </div>
         </div>
-    </header><br>
+    </header>
 
-    <div class="container mx-auto">
-        <div class="d-flex flex-wrap justify-content-between align-items-center">
-            <h3>Pesanan Masuk</h3>
-        </div><br>
+    <div class="container m-4 mx-auto">
+        <h3>Pesanan Masuk</h3><br>
 
         <table class="table table-striped table-bordered th-color">
             <tr>

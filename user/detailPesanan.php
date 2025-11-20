@@ -7,15 +7,15 @@
     $username = $_SESSION['username'];
 
     if (isset($_POST['hapus_history'])) {
-        include('../connection.php');
-        $username = $_SESSION['username'];
+    include('../connection.php');
+    $username = $_SESSION['username'];
 
-        $delete = "DELETE FROM history WHERE username='$username'";
-        mysqli_query($connect, $delete);
+    $delete = "DELETE FROM cart WHERE username='$username'";
+    mysqli_query($connect, $delete);
 
-        header("Location: history.php");
-        exit;
-    }
+    header("Location: history.php");
+    exit;
+}
 
 ?>
 
@@ -25,7 +25,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>History</title>
+    <title>Detail Pesanan</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <style>

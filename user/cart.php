@@ -5,6 +5,22 @@
         exit;
     }
     $username = $_SESSION['username'];
+
+    if (isset($_POST['hapus_produk'])) {
+        include('../connection.php');
+
+        $id = $_POST['id'];
+
+        $sql = "SELECT * FROM cart WHERE id_obat = '$id' AND username = '$username'";
+        $query = mysqli_query($connect, $sql);
+
+        if(mysqli_num_rows($query)){
+            $delete = "DELETE FROM cart WHERE id_obat = '$id' AND username = '$username'";
+            mysqli_query($connect, $delete);
+        }
+        header("Location: cart.php");
+        exit;
+    }
 ?>
 
 <!doctype html>
@@ -57,7 +73,7 @@
         </div>
     </header>
     
-    <div class="container my-5">
+    <div class="container m-4 mx-auto">
         <div class="row">
             
             <!-- LIST PRODUK -->
@@ -105,7 +121,11 @@
                                         <input type="number" class="form-control" name="qty"
                                             min="1" max="<?=$data['stok']?>" value="<?=$data['qty']?>" disabled>
                                     </div>
-                                    <a href="deleteCartItem.php?id=<?=$data['id_obat']?>" class="btn btn-danger btn-sm w-100">Hapus</a>
+                                    <form action="cart.php" method="POST">
+                                        <input type="hidden" name="id" value="<?=$data['id_obat']?>">
+                                        <button type="submit" name="hapus_produk" class="btn btn-danger btn-sm" style="width: 130px;">
+                                            Hapus</button>
+                                    </form>
                                 </div>
                             </div>
                         </div> 

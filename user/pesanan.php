@@ -13,7 +13,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Home</title>
+    <title>Status Pesanan</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <style>
@@ -26,6 +26,19 @@
         .sidebar {
             position: sticky;
             top: 128px;
+        }
+        .th-color th{
+            background-color: #1c794a;
+            color: #ffffffff;
+        }
+        .cart-img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+        }     
+        a {
+            text-decoration: none;
+            color: inherit;
         }
     </style>
 </head>
@@ -52,8 +65,18 @@
         </div>
     </header>
     
-    <div class="container my-5">
-        <h3>Status Pesanan</h3>
+    <div class="container m-4 mx-auto">
+        <h3>Status Pesanan</h3><br>
+
+        <table class="table table-striped table-bordered th-color">
+            <tr>
+                <th>Order ID</th>
+                <th>Tanggal Pesan</th>
+                <th>Detail</th>
+                <th>Status</th>
+            </tr>
+        </table>
+
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
