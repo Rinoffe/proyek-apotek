@@ -1,3 +1,11 @@
+<?php
+    session_start();
+    if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== TRUE) {
+        header("Location: ../login.php");
+        exit;
+    }
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -12,6 +20,7 @@
             background-color: #1c794a;
             position: sticky;
             top: 0;
+            z-index: 100;
         }
         .gambar-produk img{
             width: 100%;
@@ -54,6 +63,11 @@
         $sql = "SELECT * FROM obat WHERE id_obat = '$id'";
         $query = mysqli_query($connect, $sql);
         $data = mysqli_fetch_array($query);
+        $qty = 1;
+
+        if (isset($_GET['success'])) {
+            $qty = $_GET['qty'];
+        }
     ?>
 
     <div class="m-5 mt-3 row">
@@ -67,7 +81,7 @@
         <div class="col-md-7">
             <div class="m-2 container p-4 shadow rounded">
                 <h1 class="pb-4"><?=$data['nama_obat']?></h1>
-                <div class="card p-4 mb-4" style="background-color: #d0e6daff;">
+                <div class="card p-4 mb-4" style="background-color: #ffffffff;">
                     <p class="m-0"><?=$data['deskripsi']?></p>
                 </div>
                 <h4 class="pb-4">Stok: <?=$data['stok']?></h4>
@@ -77,18 +91,21 @@
                         <div class="row">
                             <div class="col input-group">
                                 <span class="input-group-text fw-bold">Qty</span>
-                                <input type="number" class="form-control" name="qty" min="1" max="<?=$data['stok']?>" required>
+                                <input type="number" class="form-control" name="qty" min="1" max="<?=$data['stok']?>" value="<?=$qty?>" required>
                             </div>
                             <input type="hidden" name="id_obat" value="<?=$data['id_obat']?>">
                             <div class="col">
-                                <button type="submit" class="btn btn-primary">Add to Cart</button>
+                                <button type="submit" class="btn btn-primary">Tambahkan</button>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
-            
-
+            <?php if (isset($_GET['success'])): ?>
+                <div class="alert alert-success text-center mx-5 mt-3">
+                    Produk berhasil dimasukkan ke keranjang!
+                </div>
+            <?php endif; ?>
         </div>
     </div>
 

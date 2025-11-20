@@ -1,3 +1,11 @@
+<?php
+    session_start();
+    if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== TRUE) {
+        header("Location: ../login.php");
+        exit;
+    }
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -12,6 +20,7 @@
             background-color: #1c794a;
             position: sticky;
             top: 0;
+            z-index: 100;
         }
         .sidebar {
             position: sticky;

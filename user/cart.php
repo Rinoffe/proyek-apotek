@@ -1,3 +1,11 @@
+<?php
+    session_start();
+    if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== TRUE) {
+        header("Location: ../login.php");
+        exit;
+    }
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -11,6 +19,7 @@
             background-color: #1c794a;
             position: sticky;
             top: 0;
+            z-index: 100;
         }
         .cart-img {
             width: 120px;
@@ -47,9 +56,9 @@
 
         <?php
             include('../connection.php');
-            $sql = "SELECT c.nama_obat, o.harga, c.qty, o.stok, o.gambar
+            $sql = "SELECT o.nama_obat, o.harga, c.qty, o.stok, o.gambar
                     FROM obat o JOIN cart c ON o.id_obat = c.id_obat
-                    WHERE c.username = 'admin'";
+                    WHERE c.username = '$_SESSION[username]'";
             $query = mysqli_query($connect, $sql);
             $total = 0;
             while($data = mysqli_fetch_array($query)){
@@ -66,7 +75,7 @@
                 </div>
                 <div class="col input-group" style="max-width:150px;">
                     <span class="input-group-text">Qty</span>
-                    <input type="number" class="form-control" name="qty" min="1" max="<?=$data['stok']?>" required>
+                    <input type="number" class="form-control" name="qty" min="1" max="<?=$data['stok']?>" value="<?=$data['qty']?>" required>
                 </div>
                 <button class="btn btn-danger">Hapus</button>
             </div>

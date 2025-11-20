@@ -1,3 +1,11 @@
+<?php
+    session_start();
+    if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== TRUE) {
+        header("Location: ../login.php");
+        exit;
+    }
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -12,6 +20,7 @@
             background-color: #1c794a;
             position: sticky;
             top: 0;
+            z-index: 100;
         }
         .cart-img {
             width: 120px;
@@ -69,9 +78,9 @@
 
                     <?php
                         include('../connection.php');
-                        $sql = "SELECT c.nama_obat, c.qty, o.harga, o.gambar
+                        $sql = "SELECT o.nama_obat, c.qty, o.harga, o.gambar
                                 FROM cart c JOIN obat o ON c.id_obat = o.id_obat
-                                WHERE c.username = 'admin'";
+                                WHERE c.username = '$_SESSION[username]'";
                         $query = mysqli_query($connect, $sql);
                         $total = 0;
                         while($data = mysqli_fetch_array($query)){

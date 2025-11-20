@@ -2,11 +2,10 @@
 
 session_start();
 
-
 $servername = "localhost";
 $username_db = "root"; 
 $password_db = ""; 
-$dbname = "nama_database_apotek"; 
+$dbname = "apotek"; 
 
 $message = "";
 
@@ -24,33 +23,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         
         
-        $stmt = $conn->prepare("SELECT id, username, password FROM users WHERE username = ?");
+        $stmt = $conn->prepare("SELECT username, nama, password FROM users WHERE username = ?");
         $stmt->bind_param("s", $input_username);
         $stmt->execute();
         $stmt->store_result();
         
         if ($stmt->num_rows == 1) {
             
-            $stmt->bind_result($user_id, $db_username, $hashed_password);
+            $stmt->bind_result($db_username, $db_nama, $hashed_password);
             $stmt->fetch();
             
             
-            if (password_verify($input_password, $hashed_password)) {
+            if ($input_password == $hashed_password) {
                 
                 
                 $_SESSION['loggedin'] = TRUE;
-                $_SESSION['id'] = $user_id;
                 $_SESSION['username'] = $db_username;
                 
-                
-                header("Location: home.php");
+                header("Location: user/home.php");
                 exit;
             } else {
-                
                 $message = "<span class='text-danger'>Error: Password yang dimasukkan salah.</span>";
             }
         } else {
-            
             $message = "<span class='text-danger'>Error: Username tidak terdaftar.</span>";
         }
         
@@ -106,8 +101,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <form action="login.php" method="POST">
                             <div class="mb-3">
                                 <label for="username" class="form-label">Username:</label>
-                                <input type="text" id="username" name="username" class="form-control" 
-                                       value="<?php echo isset($_POST['username']) ? htmlspecialchars($_POST['username']) : ''; ?>" required>
+                                <input type="text" id="username" name="username" class="form-control" required>
                             </div>
                             <div class="mb-4">
                                 <label for="password" class="form-label">Password:</label>

@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $password = $_POST['password']; 
         
         
-        $stmt_check = $conn->prepare("SELECT id FROM users WHERE username = ?");
+        $stmt_check = $conn->prepare("SELECT username FROM users WHERE username = ?");
         $stmt_check->bind_param("s", $username);
         $stmt_check->execute();
         $stmt_check->store_result();
@@ -27,12 +27,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($stmt_check->num_rows > 0) {
             $message = "<span class='text-danger'>Error: Username <b>" . htmlspecialchars($username) . "</b> sudah terdaftar. Silakan gunakan username lain.</span>";
         } else {
-            
-            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-            
-            
+
             $stmt_insert = $conn->prepare("INSERT INTO users (username, password) VALUES (?, ?)");
-            $stmt_insert->bind_param("ss", $username, $hashed_password);
+            $stmt_insert->bind_param("ss", $username, $password);
             
             if ($stmt_insert->execute()) {
                 $message = "<span class='text-success'>Registrasi berhasil! Silakan <a href='login.php' class='alert-link'>Login</a>.</span>";
@@ -98,8 +95,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <form action="registrasi.php" method="POST">
                             <div class="mb-3">
                                 <label for="username" class="form-label">Username:</label>
-                                <input type="text" id="username" name="username" class="form-control" 
-                                       value="<?php echo isset($_POST['username']) ? htmlspecialchars($_POST['username']) : ''; ?>" required>
+                                <input type="text" id="username" name="username" class="form-control" required>
                             </div>
                             <div class="mb-4">
                                 <label for="password" class="form-label">Password:</label>
