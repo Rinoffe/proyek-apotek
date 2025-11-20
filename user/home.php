@@ -54,8 +54,8 @@
                     <li><a class="dropdown-item" href="#">Edit</a></li>
                     <li><a class="dropdown-item text-danger" href="../logout.php">Logout</a></li>
                     <li><hr class="dropdown-divider"></hr></li>
-                    <li><a class="dropdown-item" href="#">History</a></li>
-                    <li><a class="dropdown-item" href="#">Status Pesanan</a></li>
+                    <li><a class="dropdown-item" href="history.php">History</a></li>
+                    <li><a class="dropdown-item" href="pesanan.php">Status Pesanan</a></li>
                 </ul>
             </div>
         </div>

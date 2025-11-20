@@ -53,7 +53,7 @@
         </div>
     </header><br>
 
-    <div id="content" class="p-4 px-5">
+    <div class="container mx-auto">
         <div class="d-flex flex-wrap justify-content-between align-items-center">
             <h3>Produk</h3>
             <a href="" class="btn btn-success">Tambah Produk</a>
