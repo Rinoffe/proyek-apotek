@@ -5,6 +5,12 @@
         exit;
     }
     $username = $_SESSION['username'];
+
+    // Panggil koneksi
+    include "../connection.php";
+
+    // Ambil data produk (obat)
+    $query = mysqli_query($connect, "SELECT * FROM obat");
 ?>
 
 <!doctype html>
@@ -44,7 +50,9 @@
                 </li> 
             </ul>
             <div class="dropdown">
-                <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"><?=$username?>'s</button>
+                <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+                    <?=$username?>'
+                </button>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="">Edit</a></li>
                     <li><a class="dropdown-item text-danger" href="../logout.php">Logout</a></li>
@@ -56,7 +64,7 @@
     <div class="container m-4 mx-auto">
         <div class="d-flex flex-wrap justify-content-between align-items-center">
             <h3>Produk</h3>
-            <a href="" class="btn btn-success">Tambah Produk</a>
+            <a href="tambah-produk.php" class="btn btn-success">Tambah Produk</a>
         </div><br>
 
         <table class="table table-striped table-bordered th-color">
@@ -67,6 +75,31 @@
                 <th>Tambah Stok</th>
                 <th>Aksi</th>
             </tr>
+
+            <?php while ($row = mysqli_fetch_assoc($query)) : ?>
+                <tr>
+                    <td><?= $row['id_obat']; ?></td>
+                    <td><?= $row['nama_obat']; ?></td>
+                    <td><?= $row['stok']; ?></td>
+
+                    <td>
+                        <a href="tambah-stok.php?id=<?= $row['id_obat']; ?>" class="btn btn-warning btn-sm">
+                            Tambah
+                        </a>
+                    </td>
+
+                    <td>
+                        <a href="edit_produk.php?id=<?= $row['id_obat']; ?>" class="btn btn-primary btn-sm">Edit</a>
+                        <a href="hapus_produk.php?id=<?= $row['id_obat']; ?>" 
+                             class="btn btn-danger btn-sm" 
+                            onclick="return confirm('Yakin hapus produk ini?');">
+                        Hapus
+                        </a>
+
+                    </td>
+                </tr>
+            <?php endwhile; ?>
+
         </table>
     </div>
 
