@@ -1,29 +1,20 @@
 <?php
-
+include ('connection.php');
 session_start();
-
-$servername = "localhost";
-$username_db = "root"; 
-$password_db = ""; 
-$dbname = "apotek"; 
 
 $message = "";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    
+if ($_SERVER["REQUEST_METHOD"] == "POST") { 
     
     $input_username = $_POST['username'];
     $input_password = $_POST['password']; 
 
-    
-    $conn = new mysqli($servername, $username_db, $password_db, $dbname);
-
-    if ($conn->connect_error) {
-        $message = "Koneksi database gagal: " . $conn->connect_error;
+    if ($connect->connect_error) {
+        $message = "Koneksi database gagal: " . $connect->connect_error;
     } else {
         
         
-        $stmt = $conn->prepare("SELECT username, nama, password, role FROM users WHERE username = ?");
+        $stmt = $connect->prepare("SELECT username, nama, password, role FROM users WHERE username = ?");
         $stmt->bind_param("s", $input_username);
         $stmt->execute();
         $stmt->store_result();
@@ -33,16 +24,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt->bind_result($db_username, $db_nama, $hashed_password, $db_role);
             $stmt->fetch();
             
-            
             if ($input_password == $hashed_password) {
-                
                 
                 $_SESSION['loggedin'] = TRUE;
                 $_SESSION['username'] = $db_username;
                 $_SESSION['role'] = $db_role;
                 
                 if ($db_role == 'admin') {
-                    header("Location: admin/produk.html");
+                    header("Location: admin/produk.php");
                     exit;
                 }else{
                     header("Location: user/home.php");
@@ -56,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         
         $stmt->close();
-        $conn->close();
+        $connect->close();
     }
 }
 

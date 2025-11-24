@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 20, 2025 at 06:26 PM
+-- Generation Time: Nov 24, 2025 at 07:02 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -39,7 +39,8 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`id_cart`, `username`, `id_obat`, `qty`) VALUES
-(7, 'Reno', 1, 10);
+(7, 'Reno', 1, 10),
+(15, 'rahma', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -66,8 +67,6 @@ CREATE TABLE `obat` (
   `id_obat` int(11) NOT NULL,
   `gambar` varchar(255) DEFAULT NULL,
   `nama_obat` varchar(100) NOT NULL,
-  `kategori` varchar(100) NOT NULL,
-  `bentuk` varchar(100) NOT NULL,
   `deskripsi` text DEFAULT NULL,
   `stok` int(11) DEFAULT 0,
   `harga` int(11) NOT NULL
@@ -77,15 +76,15 @@ CREATE TABLE `obat` (
 -- Dumping data for table `obat`
 --
 
-INSERT INTO `obat` (`id_obat`, `gambar`, `nama_obat`, `kategori`, `bentuk`, `deskripsi`, `stok`, `harga`) VALUES
-(1, 'paracetamol.jpg', 'Paracetamol 500mg', 'Obat bebas', 'Kaplet', 'Obat untuk menurunkan demam dan meredakan nyeri kepala, otot, serta sakit gigi.', 120, 1500),
-(2, 'amoxicillin.jpg', 'Amoxicillin 500mg', 'Obat keras', 'Kapsul', 'Antibiotik untuk mengobati infeksi bakteri seperti ISPA, infeksi kulit, dan telinga.', 80, 3000),
-(3, 'vitamin_c.jpg', 'Vitamin C 1000mg', 'Obat bebas', 'Tablet', 'Suplemen untuk meningkatkan daya tahan tubuh dan menjaga kesehatan kulit.', 150, 2500),
-(4, 'salbutamol.jpg', 'Salbutamol Inhaler', 'Obat keras', 'Inhaler', 'Obat bronkodilator untuk meredakan sesak napas akibat asma dan PPOK.', 60, 35000),
-(5, 'betadine.jpg', 'Betadine Antiseptic Solution 30ml', 'Obat bebas', 'Salep', 'Cairan antiseptik untuk membersihkan luka dan mencegah infeksi.', 90, 12000),
-(6, 'promag.jpg', 'Promag Tablet', 'Obat bebas', 'Tablet', 'Obat antasida yang cepat meredakan gejala sakit maag, perut kembung, dan rasa perih.', 20, 9000),
-(8, 'tolak_angin_cair.jpg', 'Tolak Angin Cair', 'Obat tradisional', '', 'Obat herbal terstandar untuk masuk angin, perut kembung, mual, dan sakit kepala.', 5, 18000),
-(9, 'kayu_putih.jpeg', 'Minyak Kayu Putih Cap Lang', 'Obat tradisional', '', 'Minyak serbaguna untuk menghangatkan tubuh, meredakan sakit perut, dan gigitan serangga.', 11, 25000);
+INSERT INTO `obat` (`id_obat`, `gambar`, `nama_obat`, `deskripsi`, `stok`, `harga`) VALUES
+(1, 'paracetamol.jpg', 'Paracetamol 500mg', 'Obat untuk menurunkan demam dan meredakan nyeri kepala, otot, serta sakit gigi.', 120, 1500),
+(2, 'amoxicillin.jpg', 'Amoxicillin 500mg', 'Antibiotik untuk mengobati infeksi bakteri seperti ISPA, infeksi kulit, dan telinga.', 80, 3000),
+(3, 'vitamin_c.jpg', 'Vitamin C 1000mg', 'Suplemen untuk meningkatkan daya tahan tubuh dan menjaga kesehatan kulit.', 150, 2500),
+(4, 'salbutamol.jpg', 'Salbutamol Inhaler', 'Obat bronkodilator untuk meredakan sesak napas akibat asma dan PPOK.', 60, 35000),
+(5, 'betadine.jpg', 'Betadine Antiseptic Solution 30ml', 'Cairan antiseptik untuk membersihkan luka dan mencegah infeksi.', 90, 12000),
+(6, 'promag.jpg', 'Promag Tablet', 'Obat antasida yang cepat meredakan gejala sakit maag, perut kembung, dan rasa perih.', 20, 9000),
+(8, 'tolak_angin_cair.jpg', 'Tolak Angin Cair', 'Obat herbal terstandar untuk masuk angin, perut kembung, mual, dan sakit kepala.', 5, 18000),
+(9, 'kayu_putih.jpeg', 'Minyak Kayu Putih Cap Lang', 'Minyak serbaguna untuk menghangatkan tubuh, meredakan sakit perut, dan gigitan serangga.', 11, 25000);
 
 -- --------------------------------------------------------
 
@@ -206,7 +205,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id_cart` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_cart` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `obat`

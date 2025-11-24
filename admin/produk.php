@@ -5,12 +5,6 @@
         exit;
     }
     $username = $_SESSION['username'];
-
-    // Panggil koneksi
-    include "../connection.php";
-
-    // Ambil data produk (obat)
-    $query = mysqli_query($connect, "SELECT * FROM obat");
 ?>
 
 <!doctype html>
@@ -36,7 +30,7 @@
 <body style="background-color: #ffffff;">
 
     <header class="d-flex flex-wrap justify-content-between align-items-center p-3 px-5">
-        <a href="produk.html" class="d-flex align-items-center text-decoration-none">
+        <a href="produk.php" class="d-flex align-items-center text-decoration-none">
             <img src="../asset/logo.png" alt="logo.png" height="80" class="me-2">
             <h2 class="text-white mb-0">Apotek K25</h2>
         </a>
@@ -50,11 +44,9 @@
                 </li> 
             </ul>
             <div class="dropdown">
-                <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
-                    <?=$username?>'
-                </button>
+                <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"><?=$username?>'s</button>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="">Edit</a></li>
+                    <li><a class="dropdown-item" href="../editUser.php?id=<?=$username?>">Edit</a></li>
                     <li><a class="dropdown-item text-danger" href="../logout.php">Logout</a></li>
                 </ul>
             </div>
@@ -63,7 +55,16 @@
 
     <div class="container m-4 mx-auto">
         <div class="d-flex flex-wrap justify-content-between align-items-center">
-            <h3>Produk</h3>
+            <div class="d-flex flex-wrap align-items-center gap-3">
+                <h3>Data Produk</h3>
+                <div class="dropdown">
+                    <button type="button" class="btn btn-outline-success dropdown-toggle" data-bs-toggle="dropdown">Filters</button>
+                    <ul class="dropdown-menu">
+                        <button id="asc" class="btn filter-btn">Nama A-Z</button>
+                        <button id="desc" class="btn filter-btn">Nama Z-A</button>
+                    </ul>
+                </div>
+            </div>
             <a href="tambah-produk.php" class="btn btn-success">Tambah Produk</a>
         </div><br>
 
@@ -76,36 +77,54 @@
                 <th>Aksi</th>
             </tr>
 
-            <?php while ($row = mysqli_fetch_assoc($query)) : ?>
-                <tr>
-                    <td><?= $row['id_obat']; ?></td>
-                    <td><?= $row['nama_obat']; ?></td>
-                    <td><?= $row['stok']; ?></td>
+            <tbody id="productList">
+                <?php
+                    include "../connection.php";
+                    $sql = "SELECT * FROM obat";
+                    $query = mysqli_query($connect, "$sql");
+                    while ($row = mysqli_fetch_assoc($query)) : ?>
 
-                    <td>
-                        <a href="tambah-stok.php?id=<?= $row['id_obat']; ?>" class="btn btn-warning btn-sm">
-                            Tambah
-                        </a>
-                    </td>
+                    <tr>
+                        <td><?= $row['id_obat']; ?></td>
+                        <td><?= $row['nama_obat']; ?></td>
+                        <td><?= $row['stok']; ?></td>
 
-                    <td>
-                        <a href="edit_produk.php?id=<?= $row['id_obat']; ?>" class="btn btn-primary btn-sm">Edit</a>
-                        <a href="hapus_produk.php?id=<?= $row['id_obat']; ?>" 
-                             class="btn btn-danger btn-sm" 
-                            onclick="return confirm('Yakin hapus produk ini?');">
-                        Hapus
-                        </a>
+                        <td>
+                            <a href="tambah-stok.php?id=<?= $row['id_obat']; ?>" class="btn btn-warning btn-sm">Tambah</a>
+                        </td>
 
-                    </td>
-                </tr>
-            <?php endwhile; ?>
+                        <td>
+                            <a href="edit_produk.php?id=<?= $row['id_obat']; ?>" class="btn btn-primary btn-sm">Edit</a>
+                            <a href="hapus_produk.php?id=<?= $row['id_obat']; ?>" 
+                                class="btn btn-danger btn-sm" 
+                                onclick="return confirm('Yakin hapus produk ini?');">
+                            Hapus
+                            </a>
 
+                        </td>
+                    </tr>
+
+                <?php endwhile; ?>
+            </tbody>
         </table>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
+    <script>
+
+        function loadProducts(filter = "") {
+            fetch("../filter/adminFilter.php?filter=" + filter)
+                .then(response => response.text())
+                .then(html => {
+                    document.getElementById("productList").innerHTML = html;
+                });
+        }
+        document.getElementById("asc").addEventListener("click", function() {loadProducts("az");});
+        document.getElementById("desc").addEventListener("click", function() {loadProducts("za");});
+
+    </script>
 </body>
 
 </html>

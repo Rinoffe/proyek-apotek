@@ -1,53 +1,48 @@
 <?php
+    include ('connection.php');
 
-$servername = "localhost";
-$username_db = "root"; 
-$password_db = ""; 
-$dbname = "apotek"; 
+    $message = "";
 
-$message = "";
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    
-    
-    $conn = new mysqli($servername, $username_db, $password_db, $dbname);
-
-    if ($conn->connect_error) {
-        $message = "Koneksi database gagal: " . $conn->connect_error;
-    } else {
-        $username = $_POST['username'];
-        $password = $_POST['password']; 
-        
-        
-        $stmt_check = $conn->prepare("SELECT username FROM users WHERE username = ?");
-        $stmt_check->bind_param("s", $username);
-        $stmt_check->execute();
-        $stmt_check->store_result();
-        
-        if ($stmt_check->num_rows > 0) {
-            $message = "<span class='text-danger'>Error: Username <b>" . htmlspecialchars($username) . "</b> sudah terdaftar. Silakan gunakan username lain.</span>";
+        if ($connect->connect_error) {
+            $message = "Koneksi database gagal: " . $connect->connect_error;
         } else {
-
-            $stmt_insert = $conn->prepare("INSERT INTO users (username, password) VALUES (?, ?)");
-            $stmt_insert->bind_param("ss", $username, $password);
+            $username = $_POST['username'];
+            $password = $_POST['password']; 
+            $nama = $_POST['nama'];
             
-            if ($stmt_insert->execute()) {
-                $message = "<span class='text-success'>Registrasi berhasil! Silakan <a href='login.php' class='alert-link'>Login</a>.</span>";
-                
-                $_POST['username'] = ''; 
-                $_POST['password'] = '';
+            $stmt_check = $connect->prepare("SELECT username FROM users WHERE username = ?");
+            $stmt_check->bind_param("s", $username);
+            $stmt_check->execute();
+            $stmt_check->store_result();
+            
+            if ($stmt_check->num_rows > 0) {
+                $message = "<span class='text-danger'>Error: Username <b>" . htmlspecialchars($username) . "</b> sudah terdaftar. Silakan gunakan username lain.</span>";
             } else {
-                $message = "<span class='text-danger'>Error saat menyimpan data: " . $stmt_insert->error . "</span>";
+
+                $stmt_insert = $connect->prepare("INSERT INTO users (username, nama, password) VALUES (?, ?, ?)");
+                $stmt_insert->bind_param("sss", $username, $nama, $password);
+                
+                if ($stmt_insert->execute()) {
+                    $message = "<span class='text-success'>Registrasi berhasil! Silakan <a href='login.php' class='alert-link'>Login</a>.</span>";
+                    
+                    $_POST['username'] = ''; 
+                    $_POST['password'] = '';
+                    $_POST['nama'] = '';
+                } else {
+                    $message = "<span class='text-danger'>Error saat menyimpan data: " . $stmt_insert->error . "</span>";
+                }
+                
+                $stmt_insert->close();
             }
             
-            $stmt_insert->close();
+            $stmt_check->close();
+            $connect->close();
         }
-        
-        $stmt_check->close();
-        $conn->close();
     }
-}
 ?>
+
 <!doctype html>
 <html lang="en">
 
@@ -84,18 +79,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <h3 class="card-title text-center mb-4">Registrasi Akun Baru</h3>
                         
                         <?php 
-                        
-                        if (!empty($message)) {
-                            
-                            $alert_class = (strpos($message, 'Error') !== false || strpos($message, 'gagal') !== false) ? 'alert-danger' : 'alert-success';
-                            echo "<div class='alert $alert_class text-center' role='alert'>$message</div>";
-                        }
+                            if (!empty($message)) {
+                                
+                                $alert_class = (strpos($message, 'Error') !== false || strpos($message, 'gagal') !== false) ? 'alert-danger' : 'alert-success';
+                                echo "<div class='alert $alert_class text-center' role='alert'>$message</div>";
+                            }
                         ?>
 
                         <form action="registrasi.php" method="POST">
                             <div class="mb-3">
                                 <label for="username" class="form-label">Username:</label>
                                 <input type="text" id="username" name="username" class="form-control" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="username" class="form-label">Nama:</label>
+                                <input type="text" id="nama" name="nama" class="form-control" required>
                             </div>
                             <div class="mb-4">
                                 <label for="password" class="form-label">Password:</label>

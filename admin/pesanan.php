@@ -30,7 +30,7 @@
 <body style="background-color: #ffffff;">
 
     <header class="d-flex flex-wrap justify-content-between align-items-center p-3 px-5">
-        <a href="announcement.html" class="d-flex align-items-center text-decoration-none">
+        <a href="produk.php" class="d-flex align-items-center text-decoration-none">
             <img src="../asset/logo.png" alt="logo.png" height="80" class="me-2">
             <h2 class="text-white mb-0">Apotek K25</h2>
         </a>
@@ -46,7 +46,7 @@
             <div class="dropdown">
                 <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"><?=$username?>'s</button>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="">Edit</a></li>
+                    <li><a class="dropdown-item" href="../editUser.php?id=<?=$username?>">Edit</a></li>
                     <li><a class="dropdown-item text-danger" href="../logout.php">Logout</a></li>
                 </ul>
             </div>
@@ -58,11 +58,11 @@
 
         <table class="table table-striped table-bordered th-color">
             <tr>
-                <th>Order ID</th>
+                <th>ID Transaksi</th>
                 <th>Username</th>
-                <th>Tanggal Pesan</th>
+                <th>Tanggal Masuk</th>
                 <th>Detail</th>
-                <th>Aksi</th>
+                <th>Status</th>
             </tr>
         </table>
     </div>

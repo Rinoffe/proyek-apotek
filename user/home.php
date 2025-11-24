@@ -51,7 +51,7 @@
             <div class="dropdown">
                 <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"><?=$username?>'s</button>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Edit</a></li>
+                    <li><a class="dropdown-item" href="../editUser.php?id=<?=$username?>">Edit</a></li>
                     <li><a class="dropdown-item text-danger" href="../logout.php">Logout</a></li>
                     <li><hr class="dropdown-divider"></hr></li>
                     <li><a class="dropdown-item" href="history.php">History</a></li>
@@ -63,13 +63,41 @@
     
     <div class="row g-0">
         <div class="col-lg-2 sidebar mt-3" style="height: 100%">
-            <div class="m-3 p-1" style="background-color: #a7a7a7ff">
-                assafasf
+            <div class="m-3 p-1 rounded" style="background-color: #ffffffff">
+                <h5 class="mb-3">Filter Urutan</h5>
+                <div class="d-grid gap-2 mb-3">
+                    <button id="filterMurah" class="btn btn-outline-success filter-btn">Harga Termurah</button>
+                    <button id="filterMahal" class="btn btn-outline-success filter-btn">Harga Termahal</button>
+                    <button id="asc" class="btn btn-outline-success filter-btn">Nama A-Z</button>
+                    <button id="desc" class="btn btn-outline-success filter-btn">Nama Z-A</button>
+                </div><hr>
+
+                <h5 class="mt-3">Filter Harga</h5>
+                <div class="row g-2 mb-2">
+                    <div class="col-6">
+                        <input type="number" id="minPrice" class="form-control" placeholder="Min">
+                    </div>
+                    <div class="col-6">
+                        <input type="number" id="maxPrice" class="form-control" placeholder="Max">
+                    </div>
+                </div>
+                <button class="btn btn-primary w-100" onclick="filterHarga()">Terapkan</button>
             </div>
         </div>
 
         <div class="col-lg-10 etalase">
-            <div class="row m-3 g-0">
+            <!-- SEARCH BAR -->
+            <div class="row m-3">
+                <div class="col-lg-2">
+                    <button class="btn btn-success w-100" onclick="searchProduk()">Cari</button>
+                </div>
+                <div class="col-lg-10">
+                    <input type="text" id="searchInput" class="form-control"
+                        placeholder="Cari nama obat...">
+                </div>
+            </div>
+
+            <div class="row m-3 g-0" id="productList">
                 <?php
                     include ('../connection.php');
                     $sql = "SELECT * FROM obat";
@@ -100,6 +128,42 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
+
+    <script src="../filter/search.js"></script>
+    <script>
+        const buttons = document.querySelectorAll('.filter-btn');
+        buttons.forEach(btn => {
+            btn.addEventListener('click', function () {
+                buttons.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        function loadProducts(filter = "") {
+            fetch("../filter/produkFilter.php?filter=" + filter)
+                .then(response => response.text())
+                .then(html => {
+                    document.getElementById("productList").innerHTML = html;
+                });
+        }
+
+        function filterHarga() {
+            let min = document.getElementById("minPrice").value;
+            let max = document.getElementById("maxPrice").value;
+
+            fetch("../filter/produkFilter.php?min=" + min + "&max=" + max)
+                .then(response => response.text())
+                .then(html => {
+                    document.getElementById("productList").innerHTML = html;
+                });
+        }
+
+        document.getElementById("filterMurah").addEventListener("click", function() {loadProducts("murah");});
+        document.getElementById("filterMahal").addEventListener("click", function() {loadProducts("mahal");});
+        document.getElementById("asc").addEventListener("click", function() {loadProducts("az");});
+        document.getElementById("desc").addEventListener("click", function() {loadProducts("za");});
+    </script>
+
 </body>
 
 </html>
