@@ -14,6 +14,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Produk</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <style>
@@ -36,7 +37,7 @@
             <div class="d-flex flex-wrap align-items-center gap-3">
                 <h3>Data Produk</h3>
                 <div class="dropdown">
-                    <button type="button" class="btn btn-outline-success dropdown-toggle" data-bs-toggle="dropdown">Filters</button>
+                    <button type="button" class="btn btn-outline-success dropdown-toggle" data-bs-toggle="dropdown"><i class="bi bi-funnel"></i> Filters</button>
                     <ul class="dropdown-menu">
                         <button id="asc" class="btn filter-btn">Nama A-Z</button>
                         <button id="desc" class="btn filter-btn">Nama Z-A</button>
@@ -44,7 +45,7 @@
                     </ul>
                 </div>
             </div>
-            <a href="tambah-produk.php" class="btn btn-success">Tambah Produk</a>
+            <a href="tambah-produk.php" class="btn btn-success"><i class="bi bi-database-add"></i> Tambah Produk</a>
         </div><br>
 
         <table class="table table-striped table-bordered th-color">

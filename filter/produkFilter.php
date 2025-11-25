@@ -62,7 +62,7 @@
                 <div class="d-flex flex-column justify-content-between p-2" style="height: 30%;">
                     <h5 class="text-truncate"><?=$data['nama_obat']?></h5>
                     <p class="m-0 text-secondary">Stok: <?=$data['stok']?></p>
-                    <h5 class="m-0">Rp. <?=number_format($data['harga'], 0, ',', '.')?></h5>
+                    <h5 class="m-0 text-success">Rp. <?=number_format($data['harga'], 0, ',', '.')?></h5>
                 </div>
             </div>
         </a>

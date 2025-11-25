@@ -65,6 +65,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Edit Akun</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <style>
@@ -79,25 +80,53 @@
 
 <body style="background-color: #ffffff;">
 
-    <header class="d-flex flex-wrap justify-content-between align-items-center p-3 px-5">
-        <a href="<?= $kembali ?>" class="d-flex align-items-center text-decoration-none">
-            <img src="asset/logo.png" alt="logo apotek" height="80" class="me-2">
-            <h2 class="text-white mb-0">Apotek K25</h2>
-        </a>
-        <div class="d-flex flex-wrap justify-content-end">
-            <a href="cart.php" class="btn btn-light me-4">Cart</a>
-            <div class="dropdown">
-                <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"><?=$currentUsername?>'s</button>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="editUser.php?id=<?=$currentUsername?>">Edit</a></li>
-                    <li><a class="dropdown-item text-danger" href="logout.php">Logout</a></li>
-                    <li><hr class="dropdown-divider"></hr></li>
-                    <li><a class="dropdown-item" href="user/history.php">History</a></li>
-                    <li><a class="dropdown-item" href="user/pesanan.php">Status Pesanan</a></li>
-                </ul>
-            </div>
-        </div>
-    </header>
+    <?php
+        $role = $_SESSION['role'];
+        if ($role == 'admin') { ?>
+            <header class="d-flex flex-wrap justify-content-between align-items-center p-3 px-5">
+                <a href="produk.php" class="d-flex align-items-center text-decoration-none">
+                    <img src="asset/logo.png" alt="logo.png" height="80" class="me-2">
+                    <h2 class="text-white mb-0 fw-bold">Apotek K25</h2>
+                </a>
+                <div class="d-flex flex-wrap justify-content-end align-items-center">
+                    <ul class="nav justify-content-end px-3">
+                        <li class="nav-item">
+                            <a class="nav-link active text-white fw-bold" href="admin/produk.php">Produk</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white fw-bold" href="admin/pesanan.php">Pesanan Masuk</a>
+                        </li> 
+                    </ul>
+                    <div class="dropdown">
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"><i class="bi bi-person-circle"></i> <?=$currentUsername?>'s</button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="editUser.php?id=<?=$currentUsername?>">Edit</a></li>
+                            <li><a class="dropdown-item text-danger" href="logout.php">Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </header>
+        <?php } else { ?>
+            <header class="d-flex flex-wrap justify-content-between align-items-center p-3 px-5">
+                <a href="<?= $kembali ?>" class="d-flex align-items-center text-decoration-none">
+                    <img src="asset/logo.png" alt="logo apotek" height="80" class="me-2">
+                    <h2 class="text-white mb-0">Apotek K25</h2>
+                </a>
+                <div class="d-flex flex-wrap justify-content-end">
+                    <a href="user/cart.php" class="btn btn-light me-4">Cart</a>
+                    <div class="dropdown">
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"><i class="bi bi-person-circle"></i> <?=$currentUsername?>'s</button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="editUser.php?id=<?=$currentUsername?>">Edit</a></li>
+                            <li><a class="dropdown-item text-danger" href="logout.php">Logout</a></li>
+                            <li><hr class="dropdown-divider"></hr></li>
+                            <li><a class="dropdown-item" href="user/history.php">History</a></li>
+                            <li><a class="dropdown-item" href="user/pesanan.php">Status Pesanan</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </header>
+        <?php } ?>
     
     <div class="container mt-4" style="width: 600px;">
         <h3 class="m-0 text-center">Edit Akun</h3><br>
