@@ -81,10 +81,11 @@
 <body style="background-color: #ffffff;">
 
     <?php
-        $role = $_SESSION['role'];
+        role = $_SESSION['role'];
+
         if ($role == 'admin') { ?>
             <header class="d-flex flex-wrap justify-content-between align-items-center p-3 px-5">
-                <a href="produk.php" class="d-flex align-items-center text-decoration-none">
+                <a href="<?= $kembali ?>" class="d-flex align-items-center text-decoration-none">
                     <img src="asset/logo.png" alt="logo.png" height="80" class="me-2">
                     <h2 class="text-white mb-0 fw-bold">Apotek K25</h2>
                 </a>
