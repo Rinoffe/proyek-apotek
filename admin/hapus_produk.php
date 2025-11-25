@@ -21,7 +21,7 @@ $gambar = $data['gambar'];
 
 // Hapus file gambar jika ada
 if ($gambar != "" && file_exists("../uploads/" . $gambar)) {
-    unlink("../uploads/" . $gambar);
+    unlink("../images/" . $gambar);
 }
 
 // Hapus data obat dari database

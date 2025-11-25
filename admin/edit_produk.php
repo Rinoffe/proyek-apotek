@@ -36,14 +36,14 @@ if (isset($_POST['submit'])) {
     if ($_FILES['gambar']['name'] != "") {
 
         $gambar_baru = time() . "_" . $_FILES['gambar']['name'];
-        $path = "../images/" . $gambar_baru;  // ← SUDAH DIGANTI KE /images
+        $path = "../images/" . $gambar_baru;
 
         // Upload file baru
         if (move_uploaded_file($_FILES['gambar']['tmp_name'], $path)) {
 
             // Hapus gambar lama jika ada
-            if ($gambar_lama != "" && file_exists("../images/" . $gambar_lama)) { // ← SUDAH DIGANTI
-                unlink("../images/" . $gambar_lama);  // ← SUDAH DIGANTI
+            if ($gambar_lama != "" && file_exists("../images/" . $gambar_lama)) {
+                unlink("../images/" . $gambar_lama);
             }
 
             $gambar_final = $gambar_baru;
@@ -129,7 +129,7 @@ if (isset($_POST['submit'])) {
         <input type="number" name="stok" value="<?= $data['stok']; ?>" class="form-control" required>
 
         <label class="mt-3">Gambar Saat Ini</label><br>
-        <img src="../images/<?= $data['gambar']; ?>" width="150" class="border mb-3"> <!-- SUDAH DIGANTI -->
+        <img src="../images/<?= $data['gambar']; ?>" width="150" class="border mb-3">
 
         <label class="mt-3">Ganti Gambar (opsional)</label>
         <input type="file" name="gambar" class="form-control">
