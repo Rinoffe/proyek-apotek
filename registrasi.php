@@ -67,14 +67,14 @@
     <header class="header-custom d-flex flex-wrap justify-content-start align-items-center p-3 px-5">
         <div class="d-flex align-items-center text-decoration-none">
             <img src="asset/logo.png" alt="logo apotek" height="80" class="me-2">
-            <h2 class="text-white mb-0">Apotek K25</h2>
+            <h2 class="text-white mb-0 fw-bold">Apotek K25</h2>
         </div>
     </header>
     
     <div class="container my-5">
         <div class="row justify-content-center">
             <div class="col-md-6 col-lg-5">
-                <div class="card shadow-sm border-0">
+                <div class="card shadow border-0">
                     <div class="card-body p-4">
                         <h3 class="card-title text-center mb-4">Registrasi Akun Baru</h3>
                         

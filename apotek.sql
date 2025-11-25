@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 24, 2025 at 07:02 PM
+-- Generation Time: Nov 25, 2025 at 05:22 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -39,8 +39,7 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`id_cart`, `username`, `id_obat`, `qty`) VALUES
-(7, 'Reno', 1, 10),
-(15, 'rahma', 2, 1);
+(7, 'Reno', 1, 10);
 
 -- --------------------------------------------------------
 
@@ -51,6 +50,7 @@ INSERT INTO `cart` (`id_cart`, `username`, `id_obat`, `qty`) VALUES
 CREATE TABLE `history` (
   `username` varchar(50) DEFAULT NULL,
   `id_obat` int(11) DEFAULT NULL,
+  `nama_obat` varchar(100) NOT NULL,
   `qty` int(11) DEFAULT 1,
   `tanggal` datetime NOT NULL,
   `lokasi` text NOT NULL,
@@ -77,12 +77,12 @@ CREATE TABLE `obat` (
 --
 
 INSERT INTO `obat` (`id_obat`, `gambar`, `nama_obat`, `deskripsi`, `stok`, `harga`) VALUES
-(1, 'paracetamol.jpg', 'Paracetamol 500mg', 'Obat untuk menurunkan demam dan meredakan nyeri kepala, otot, serta sakit gigi.', 120, 1500),
-(2, 'amoxicillin.jpg', 'Amoxicillin 500mg', 'Antibiotik untuk mengobati infeksi bakteri seperti ISPA, infeksi kulit, dan telinga.', 80, 3000),
+(1, 'paracetamol.jpg', 'Paracetamol 500mg', 'Obat untuk menurunkan demam dan meredakan nyeri kepala, otot, serta sakit gigi.', 119, 1500),
+(2, 'amoxicillin.jpg', 'Amoxicillin 500mg', 'Antibiotik untuk mengobati infeksi bakteri seperti ISPA, infeksi kulit, dan telinga.', 79, 3000),
 (3, 'vitamin_c.jpg', 'Vitamin C 1000mg', 'Suplemen untuk meningkatkan daya tahan tubuh dan menjaga kesehatan kulit.', 150, 2500),
 (4, 'salbutamol.jpg', 'Salbutamol Inhaler', 'Obat bronkodilator untuk meredakan sesak napas akibat asma dan PPOK.', 60, 35000),
 (5, 'betadine.jpg', 'Betadine Antiseptic Solution 30ml', 'Cairan antiseptik untuk membersihkan luka dan mencegah infeksi.', 90, 12000),
-(6, 'promag.jpg', 'Promag Tablet', 'Obat antasida yang cepat meredakan gejala sakit maag, perut kembung, dan rasa perih.', 20, 9000),
+(6, 'promag.jpg', 'Promag Tablet', 'Obat antasida yang cepat meredakan gejala sakit maag, perut kembung, dan rasa perih.', 18, 9000),
 (8, 'tolak_angin_cair.jpg', 'Tolak Angin Cair', 'Obat herbal terstandar untuk masuk angin, perut kembung, mual, dan sakit kepala.', 5, 18000),
 (9, 'kayu_putih.jpeg', 'Minyak Kayu Putih Cap Lang', 'Minyak serbaguna untuk menghangatkan tubuh, meredakan sakit perut, dan gigitan serangga.', 11, 25000);
 
@@ -106,7 +106,7 @@ CREATE TABLE `transaksi` (
 --
 
 INSERT INTO `transaksi` (`id_transaksi`, `tanggal`, `username`, `lokasi`, `metode_pembayaran`, `status`) VALUES
-(4, '2025-11-21 00:24:47', 'rahma', 'yeysuyyusus', 'Transfer', 'Dikemas');
+(5, '2025-11-25 19:40:44', 'rahma', 'Nitikan', 'Transfer', 'Dikirim');
 
 -- --------------------------------------------------------
 
@@ -127,7 +127,9 @@ CREATE TABLE `transaksi_detail` (
 --
 
 INSERT INTO `transaksi_detail` (`id_detail`, `id_transaksi`, `username`, `id_obat`, `qty`) VALUES
-(5, 4, 'rahma', 8, 1);
+(6, 5, 'rahma', 2, 1),
+(7, 5, 'rahma', 1, 1),
+(8, 5, 'rahma', 6, 2);
 
 -- --------------------------------------------------------
 
@@ -148,8 +150,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`username`, `nama`, `password`, `role`) VALUES
 ('admin', 'admin', 'admin', 'admin'),
-('rahma', '', '123', 'user'),
-('Reno', '', '123', 'user');
+('rahma', 'Nisrina', '123', 'user'),
+('Reno', 'Reno', '123', 'user');
 
 --
 -- Indexes for dumped tables
@@ -205,7 +207,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id_cart` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_cart` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `obat`
@@ -217,13 +219,13 @@ ALTER TABLE `obat`
 -- AUTO_INCREMENT for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `transaksi_detail`
 --
 ALTER TABLE `transaksi_detail`
-  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables

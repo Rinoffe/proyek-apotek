@@ -18,20 +18,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <style>
-        header{
-            background-color: #1c794a;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        .sidebar {
-            position: sticky;
-            top: 128px;
-        }
-        .th-color th{
-            background-color: #1c794a;
-            color: #ffffffff;
-        }
         .cart-img {
             width: 100px;
             height: 100px;

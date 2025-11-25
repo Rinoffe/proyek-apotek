@@ -18,12 +18,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <style>
-        header{
-            background-color: #1c794a;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
         .sidebar {
             position: sticky;
             top: 128px;
@@ -36,7 +30,12 @@
         a {
             text-decoration: none;
             color: black;
-        }        
+        }
+        .produk:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 8px 18px #00000026;
+            transition: 0.3s;
+        }
     </style>
 </head>
 
@@ -90,7 +89,7 @@
                     
                 <div class="col-md-4 col-lg-3 p-0">
                     <a href="produk.php?id=<?=$data['id_obat']?>">
-                        <div class="produk m-3 p-0 border rounded shadow-sm" style="height: 350px;">
+                        <div class="produk m-3 p-0 border rounded" style="height: 350px; overflow: hidden;">
                             <div class="gambar-produk border-bottom" style="height: 70%";>
                                 <img src="../images/<?=$data['gambar']?>" alt="foto produk">
                             </div>

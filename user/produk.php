@@ -18,12 +18,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <style>
-        header{
-            background-color: #1c794a;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
         .gambar-produk img{
             width: 100%;
             height: 420px;
@@ -39,6 +33,7 @@
     <div class="container m-4 mx-auto d-flex align-items-center gap-3">
         <a href="home.php" class="btn btn-success px-4 fs-6">🡸</a>
         <h3>Produk</h3>
+        
     </div>
 
     <?php
@@ -64,14 +59,14 @@
 
         <div class="col-md-7">
             <div class="m-2 container p-4 shadow rounded">
-                <h1 class="pb-4"><?=$data['nama_obat']?></h1>
-                <h3 class="pb-4 text-success">Rp. <?=number_format($data['harga'], 0, ',', '.')?></h3>
+                <h1 class="pb-4 m-0"><?=$data['nama_obat']?></h1>
+                <h3 class="pb-4 m-0 text-success">Rp. <?=number_format($data['harga'], 0, ',', '.')?></h3>
                 <div class="card p-4 mb-4" style="background-color: #ffffffff;">
                     <p class="m-0"><?=$data['deskripsi']?></p>
                 </div>
                 <h5 class="pb-4">Stok: <?=$data['stok']?></h5>
 
-                <div class="d-flex">
+                <div class="d-flex align-items-center justify-content-between">
                     <form action="cartProses.php" method="POST">
                         <div class="row">
                             <div class="col input-group">
@@ -85,13 +80,14 @@
                             </div>
                         </div>
                     </form>
+                    <?php if (isset($_GET['success'])): ?>
+                        <div class="alert alert-success text-center m-0 ms-3 p-2">
+                            Berhasil masuk keranjang!
+                        </div>
+                    <?php endif; ?>
                 </div>
             </div>
-            <?php if (isset($_GET['success'])): ?>
-                <div class="alert alert-success text-center mx-5 mt-3">
-                    Produk berhasil dimasukkan ke keranjang!
-                </div>
-            <?php endif; ?>
+            
         </div>
     </div>
 
