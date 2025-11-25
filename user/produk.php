@@ -65,6 +65,7 @@
         <div class="col-md-7">
             <div class="m-2 container p-4 shadow rounded">
                 <h1 class="pb-4"><?=$data['nama_obat']?></h1>
+                <h3 class="pb-4 text-success">Rp. <?=number_format($data['harga'], 0, ',', '.')?></h3>
                 <div class="card p-4 mb-4" style="background-color: #ffffffff;">
                     <p class="m-0"><?=$data['deskripsi']?></p>
                 </div>

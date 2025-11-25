@@ -110,7 +110,7 @@
             <header class="d-flex flex-wrap justify-content-between align-items-center p-3 px-5">
                 <a href="<?= $kembali ?>" class="d-flex align-items-center text-decoration-none">
                     <img src="asset/logo.png" alt="logo apotek" height="80" class="me-2">
-                    <h2 class="text-white mb-0">Apotek K25</h2>
+                    <h2 class="text-white mb-0 fw-bold">Apotek K25</h2>
                 </a>
                 <div class="d-flex flex-wrap justify-content-end">
                     <a href="user/cart.php" class="btn btn-light me-4">Cart</a>
