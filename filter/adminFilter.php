@@ -15,6 +15,8 @@
         $sql = "SELECT * FROM obat ORDER BY nama_obat ASC";
     } elseif ($filter == "za") {
         $sql = "SELECT * FROM obat ORDER BY nama_obat DESC";
+    } else if ($filter == "minStok") {
+        $sql = "SELECT * FROM obat ORDER BY stok ASC";
     } else {
         $sql = "SELECT * FROM obat";
     }

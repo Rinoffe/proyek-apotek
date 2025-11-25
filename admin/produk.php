@@ -62,6 +62,7 @@
                     <ul class="dropdown-menu">
                         <button id="asc" class="btn filter-btn">Nama A-Z</button>
                         <button id="desc" class="btn filter-btn">Nama Z-A</button>
+                        <button id="stok" class="btn filter-btn">Stok Minim</button>
                     </ul>
                 </div>
             </div>
@@ -123,6 +124,7 @@
         }
         document.getElementById("asc").addEventListener("click", function() {loadProducts("az");});
         document.getElementById("desc").addEventListener("click", function() {loadProducts("za");});
+        document.getElementById("stok").addEventListener("click", function() {loadProducts("minStok");});
 
     </script>
 </body>
