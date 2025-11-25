@@ -25,7 +25,7 @@
 
         // UPDATE STOK OBAT
         $updateStok = "UPDATE obat SET stok = stok - {$data['qty']} 
-             WHERE id_obat = '{$data['id_obat']}'";
+            WHERE id_obat = '{$data['id_obat']}'";
         mysqli_query($connect, $updateStok);
     }
 

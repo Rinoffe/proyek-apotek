@@ -7,14 +7,13 @@
     $username = $_SESSION['username'];
 
     if (isset($_POST['hapus_history'])) {
-    include('../connection.php');
-    $username = $_SESSION['username'];
+        include('../connection.php');
+        $username = $_SESSION['username'];
 
-    $delete = "DELETE FROM cart WHERE username='$username'";
-    mysqli_query($connect, $delete);
+        $delete = "DELETE FROM history WHERE username='$username'";
+        mysqli_query($connect, $delete);
 
-    header("Location: history.php");
-    exit;
+        header("Location: history.php");
 }
 
 ?>
@@ -90,17 +89,16 @@
 
         <?php
             include('../connection.php');
-            $sql = "SELECT c.id_obat, o.nama_obat, o.harga, c.qty, o.stok, o.gambar
-                    FROM obat o JOIN cart c ON o.id_obat = c.id_obat
-                    WHERE c.username = '$_SESSION[username]'";
+            $sql = "SELECT h.id_obat, o.nama_obat, o.harga, h.qty, o.stok, o.gambar, h.tanggal, h.metode_pembayaran
+                    FROM obat o
+                    JOIN history h ON o.id_obat = h.id_obat
+                    WHERE h.username = '$_SESSION[username]'";
             $query = mysqli_query($connect, $sql);
 
             $total = 0;
-            $stokhabis = false;
 
             while($data = mysqli_fetch_array($query)){
-                $total += $data['harga'] * $data['qty'];
-                if ($data['stok'] == 0) $stokhabis = true;
+                $total = $data['harga'] * $data['qty'];
         ?>
 
         <div class="card d-flex flex-row align-items-start gap-3 p-0 mb-2">
@@ -110,11 +108,11 @@
                     <h5 class="mb-1"><?=$data['nama_obat']?></h5>
                 </a>
                 <p class="m-0"><?=$data['stok']?> x Rp. <?=number_format($data['harga'], 0, ',', '.')?></p>
-                <p class="fw-bold m-0">Total: Rp <?=number_format($data['harga'] * $data['qty'], 0, ',', '.')?></p>
+                <p class="fw-bold m-0">Total: Rp <?=number_format($total, 0, ',', '.')?></p>
             </div>
             <div class="d-flex flex-column align-items-end p-2">
-                <p class="mb-0 text-muted"><small>23 Mei 2005</small></p>
-                <p class="mb-0 text-muted"><small>Tunai</small></p>
+                <p class="mb-0 text-muted"><small><?=$data['tanggal']?></small></p>
+                <p class="mb-0 text-muted"><small><?=$data['metode_pembayaran']?></small></p>
             </div>
         </div>
 

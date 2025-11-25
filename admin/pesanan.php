@@ -61,9 +61,38 @@
                 <th>ID Transaksi</th>
                 <th>Username</th>
                 <th>Tanggal Masuk</th>
-                <th>Detail</th>
                 <th>Status</th>
+                <th>Aksi</th>
             </tr>
+
+            <?php 
+                include ('../connection.php');
+                $sql = "SELECT * FROM transaksi ORDER BY id_transaksi DESC";
+                $query = mysqli_query($connect, $sql);
+
+                while ($data = mysqli_fetch_array($query)){ ?>
+
+            <tr>
+                <td><?=$data['id_transaksi']?></td>
+                <td><?=$data['username']?></td>
+                <td><?=$data['tanggal']?></td>
+                <td><?=$data['status']?></td>
+
+                <td>
+                    <?php
+                        if ($data['status'] == "Dikemas") {
+                            echo "<a href='ubah_status.php?id=" . $data['id_transaksi'] . "&aksi=kirim' class='btn btn-warning'>Kirim</a>";
+                        }
+                        else if ($data['status'] == "Dikirim") {
+                            echo "<a href='ubah_status.php?id=" . $data['id_transaksi'] . "&aksi=selesai' class='btn btn-primary'>Selesai</a>";
+                        }
+                    ?>
+                </td>
+
+            </tr>
+
+            <?php } ?>
+
         </table>
     </div>
 
