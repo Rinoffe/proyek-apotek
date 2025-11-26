@@ -20,7 +20,7 @@
     $gambar = $data['gambar'];
 
     // Hapus file gambar
-    if ($gambar != "" && file_exists("../uploads/" . $gambar)) {
+    if ($gambar != "" && file_exists("../images/" . $gambar)) {
         unlink("../images/" . $gambar);
     }
 
