@@ -57,6 +57,7 @@ if (isset($_POST['tambah_stok'])) {
                         <i class="bi bi-funnel"></i> Filters
                     </button>
                     <ul class="dropdown-menu">
+                        <button id="latest" class="btn filter-btn">Produk Terbaru</button>
                         <button id="asc" class="btn filter-btn">Nama A-Z</button>
                         <button id="desc" class="btn filter-btn">Nama Z-A</button>
                         <button id="stok" class="btn filter-btn">Stok Minim</button>
@@ -124,6 +125,7 @@ if (isset($_POST['tambah_stok'])) {
                     document.getElementById("productList").innerHTML = html;
                 });
         }
+        document.getElementById("latest").addEventListener("click", function() { loadProducts("latest"); });
         document.getElementById("asc").addEventListener("click", function() { loadProducts("az"); });
         document.getElementById("desc").addEventListener("click", function() { loadProducts("za"); });
         document.getElementById("stok").addEventListener("click", function() { loadProducts("minStok"); });

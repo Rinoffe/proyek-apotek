@@ -8,14 +8,13 @@ $username = $_SESSION['username'];
 
 include "../connection.php";
 
-// Pastikan ID ada
-if (!isset($_GET['id'])) {
-    die("ID tidak ditemukan.");
+// Ambil data produk berdasarkan id
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+} else if (isset($_POST['submit'])) {
+    $id = $_POST['id'];
 }
 
-$id = $_GET['id'];
-
-// Ambil data lama
 $query = mysqli_query($connect, "SELECT * FROM obat WHERE id_obat='$id'");
 $data = mysqli_fetch_assoc($query);
 
@@ -65,7 +64,7 @@ if (isset($_POST['submit'])) {
     ");
 
     if ($update) {
-        echo "<script>alert('Produk berhasil diupdate!'); window.location='produk.php';</script>";
+        header("Location: produk.php");
     } else {
         echo "<script>alert('Gagal mengupdate!');</script>";
     }
@@ -92,7 +91,9 @@ if (isset($_POST['submit'])) {
 
 <div class="container m-4 mx-auto">
     <h3>Edit Produk</h3>
-    <form action="" method="POST" enctype="multipart/form-data">
+    <form action="edit_produk.php" method="POST" enctype="multipart/form-data">
+
+        <input type="hidden" name="id" value="<?= $data['id_obat']; ?>">
 
         <label class="mt-3">Nama Produk</label>
         <input type="text" name="nama_obat" value="<?= $data['nama_obat']; ?>" class="form-control" required>

@@ -13,6 +13,8 @@
     // Tentukan query berdasarkan filter
     if ($filter == "az") {
         $sql = "SELECT * FROM obat ORDER BY nama_obat ASC";
+    } elseif ($filter == "latest") {
+        $sql = "SELECT * FROM obat ORDER BY id_obat DESC";
     } elseif ($filter == "za") {
         $sql = "SELECT * FROM obat ORDER BY nama_obat DESC";
     } else if ($filter == "minStok") {
