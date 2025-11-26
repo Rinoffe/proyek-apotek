@@ -32,7 +32,7 @@
 
 <body style="background-color: #ffffff;">
 
-    <?php include ('userHeader.php'); ?>
+    <?php include ('adminHeader.php'); ?>
     
     <div class="container m-4 mx-auto">
         <div class="d-flex flex-wrap justify-content-between align-items-center">
@@ -61,7 +61,7 @@
                 <p class="p-0 m-0 col"><?=$d['lokasi']?></p>
             </div>
             <div>
-                <h5 class="m-0 col">Nama Pemesan</h5>
+                <h5 class="m-0 col">Nama Penerima</h5>
                 <p class="p-0 m-0 col"><?=$d['nama']?></p>
             </div>
             <div>

@@ -37,6 +37,7 @@
                 <th>ID Transaksi</th>
                 <th>Username</th>
                 <th>Tanggal Masuk</th>
+                <th>Detail</th>
                 <th>Status</th>
                 <th>Aksi</th>
             </tr>
@@ -52,6 +53,7 @@
                 <td><?=$data['id_transaksi']?></td>
                 <td><?=$data['username']?></td>
                 <td><?=$data['tanggal']?></td>
+                <td><a href="detailPesanan.php?id=<?=$data['id_transaksi']?>" class="btn btn-primary btn-sm">Detail</a></td>
                 <td><?=$data['status']?></td>
 
                 <td>
