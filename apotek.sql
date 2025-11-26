@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 26, 2025 at 03:48 AM
+-- Generation Time: Nov 26, 2025 at 03:54 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -86,8 +86,8 @@ INSERT INTO `obat` (`id_obat`, `gambar`, `nama_obat`, `deskripsi`, `stok`, `harg
 (5, 'betadine.jpg', 'Betadine Antiseptic Solution 30ml', 'Cairan antiseptik untuk membersihkan luka dan mencegah infeksi.', 90, 12000),
 (6, 'promag.jpg', 'Promag Tablet', 'Obat antasida yang cepat meredakan gejala sakit maag, perut kembung, dan rasa perih.', 18, 9000),
 (8, 'tolak_angin_cair.jpg', 'Tolak Angin Cair', 'Obat herbal terstandar untuk masuk angin, perut kembung, mual, dan sakit kepala.', 10, 18000),
-(9, 'kayu_putih.jpeg', 'Minyak Kayu Putih Cap Lang', 'Minyak serbaguna untuk menghangatkan tubuh, meredakan sakit perut, dan gigitan serangga.', 6, 25000),
-(10, '1764122636_hansaplast.jpg', 'Hansaplast 1 pak isi 6', 'Plester hypoallergenic, memiliki kemungkinan yang sangat kecil untuk membuat kulit iritasi untuk Anda yang memiliki kulit sensitif. Kecocokan terhadap kulit telah diuji secara dermatologi.', 4, 16000);
+(9, 'kayu_putih.jpeg', 'Minyak Kayu Putih Cap Lang', 'Minyak serbaguna untuk menghangatkan tubuh, meredakan sakit perut, dan gigitan serangga.', 7, 25000),
+(10, '1764125407_mantap.jpeg', 'Hansaplast 1 pak isi 6', 'Plester hypoallergenic, memiliki kemungkinan yang sangat kecil untuk membuat kulit iritasi untuk Anda yang memiliki kulit sensitif. Kecocokan terhadap kulit telah diuji secara dermatologi.', 4, 16000);
 
 -- --------------------------------------------------------
 

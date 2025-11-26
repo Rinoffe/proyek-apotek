@@ -57,10 +57,10 @@
                 <td>
                     <?php
                         if ($data['status'] == "Dikemas") {
-                            echo "<a href='ubah_status.php?id=" . $data['id_transaksi'] . "&aksi=kirim' class='btn btn-warning'>Kirim</a>";
+                            echo "<a href='ubah_status.php?id=" . $data['id_transaksi'] . "&aksi=kirim' class='btn btn-warning btn-sm'>Kirim</a>";
                         }
                         else if ($data['status'] == "Dikirim") {
-                            echo "<a href='ubah_status.php?id=" . $data['id_transaksi'] . "&aksi=selesai' class='btn btn-primary'>Selesai</a>";
+                            echo "<a href='ubah_status.php?id=" . $data['id_transaksi'] . "&aksi=selesai' class='btn btn-primary btn-sm'>Diterima</a>";
                         }
                     ?>
                 </td>
