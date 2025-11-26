@@ -70,7 +70,7 @@ if (isset($_POST['tambah_stok'])) {
             </a>
         </div><br>
 
-        <table class="table table-striped table-bordered th-color">
+        <table class="table table-striped table-bordered th-color shadow-sm" style="border-radius: 12px; overflow: hidden">
             <tr>
                 <th>Produk ID</th>
                 <th>Nama Produk</th>

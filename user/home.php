@@ -76,7 +76,7 @@
                 </div>
                 <div class="col-lg-10">
                     <input type="text" id="searchInput" class="form-control"
-                        placeholder="Cari nama obat...">
+                        placeholder="Cari nama produk...">
                 </div>
             </div>
 

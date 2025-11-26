@@ -71,7 +71,7 @@
                 $total = $data['harga'] * $data['qty'];
         ?>
 
-        <div class="card d-flex flex-row align-items-start gap-3 p-0 mb-2">
+        <div class="card d-flex flex-row align-items-start gap-3 p-0 mb-2 shadow-sm">
             <img src="../images/<?=$data['gambar']?>" class="rounded cart-img" alt="foto produk">
             <div class="flex-grow-1 p-2">
                 <a href="produk.php?id=<?=$data['id_obat']?>">
@@ -86,7 +86,11 @@
             </div>
         </div>
 
-        <?php } ?>
+        <?php }
+            if (mysqli_num_rows($query) == 0) {
+                echo "<p class='text-muted card p-3 text-center'>Sejarah pembelian kosong.</p>";
+            }
+        ?>
 
     </div>
 

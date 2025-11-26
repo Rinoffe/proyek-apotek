@@ -32,7 +32,7 @@
     <div class="container m-4 mx-auto">
         <h3>Pesanan Masuk</h3><br>
 
-        <table class="table table-striped table-bordered th-color">
+        <table class="table table-striped table-bordered th-color shadow-sm" style="border-radius: 12px; overflow: hidden">
             <tr>
                 <th>ID Transaksi</th>
                 <th>Username</th>
@@ -67,7 +67,11 @@
 
             </tr>
 
-            <?php } ?>
+            <?php }
+                if (mysqli_num_rows($query) == 0) {
+                    echo "<p class='text-muted card p-3 text-center'>Belum ada transaksi masuk.</p>";
+                }
+            ?>
 
         </table>
     </div>
