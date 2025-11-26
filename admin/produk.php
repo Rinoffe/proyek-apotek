@@ -1,10 +1,30 @@
 <?php
-    session_start();
-    if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== TRUE) {
-        header("Location: ../login.php");
-        exit;
-    }
-    $username = $_SESSION['username'];
+session_start();
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== TRUE) {
+    header("Location: ../login.php");
+    exit;
+}
+$username = $_SESSION['username'];
+
+include "../connection.php";
+
+// =========================================
+//  FITUR TAMBAH STOK LANGSUNG (nambah 1)
+// =========================================
+if (isset($_GET['tambah_stok'])) {
+    $id = $_GET['tambah_stok'];
+
+    // Ambil stok lama
+    $q = mysqli_query($connect, "SELECT stok FROM obat WHERE id_obat='$id'");
+    $d = mysqli_fetch_assoc($q);
+    $stok_baru = $d['stok'] + 1;
+
+    // Update stok
+    mysqli_query($connect, "UPDATE obat SET stok='$stok_baru' WHERE id_obat='$id'");
+
+    echo "<script>window.location='produk.php';</script>";
+    exit;
+}
 ?>
 
 <!doctype html>
@@ -14,11 +34,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Produk</title>
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <style>
-        .th-color th{
+        .th-color th {
             background-color: #1c794a;
             color: white;
         }
@@ -27,14 +48,18 @@
 
 <body style="background-color: #ffffff;">
 
-    <?php include ('adminHeader.php'); ?>
+    <?php include('adminHeader.php'); ?>
 
     <div class="container m-4 mx-auto">
+
         <div class="d-flex flex-wrap justify-content-between align-items-center">
             <div class="d-flex flex-wrap align-items-center gap-3">
                 <h3>Data Produk</h3>
+
                 <div class="dropdown">
-                    <button type="button" class="btn btn-outline-success dropdown-toggle" data-bs-toggle="dropdown"><i class="bi bi-funnel"></i> Filters</button>
+                    <button type="button" class="btn btn-outline-success dropdown-toggle" data-bs-toggle="dropdown">
+                        <i class="bi bi-funnel"></i> Filters
+                    </button>
                     <ul class="dropdown-menu">
                         <button id="asc" class="btn filter-btn">Nama A-Z</button>
                         <button id="desc" class="btn filter-btn">Nama Z-A</button>
@@ -42,7 +67,10 @@
                     </ul>
                 </div>
             </div>
-            <a href="tambah-produk.php" class="btn btn-success"><i class="bi bi-database-add"></i> Tambah Produk</a>
+
+            <a href="tambah_produk.php" class="btn btn-success">
+                <i class="bi bi-database-add"></i> Tambah Produk
+            </a>
         </div><br>
 
         <table class="table table-striped table-bordered th-color">
@@ -56,10 +84,10 @@
 
             <tbody id="productList">
                 <?php
-                    include "../connection.php";
-                    $sql = "SELECT * FROM obat";
-                    $query = mysqli_query($connect, "$sql");
-                    while ($row = mysqli_fetch_assoc($query)) : ?>
+                $sql = "SELECT * FROM obat";
+                $query = mysqli_query($connect, $sql);
+                while ($row = mysqli_fetch_assoc($query)) :
+                ?>
 
                     <tr>
                         <td><?= $row['id_obat']; ?></td>
@@ -67,17 +95,21 @@
                         <td><?= $row['stok']; ?></td>
 
                         <td>
-                            <a href="tambah-stok.php?id=<?= $row['id_obat']; ?>" class="btn btn-warning btn-sm">Tambah</a>
+                            <!-- Tombol tetap "Tambah" -->
+                            <a href="produk.php?tambah_stok=<?= $row['id_obat']; ?>" 
+                               class="btn btn-warning btn-sm">
+                                Tambah
+                            </a>
                         </td>
 
                         <td>
                             <a href="edit_produk.php?id=<?= $row['id_obat']; ?>" class="btn btn-primary btn-sm">Edit</a>
-                            <a href="hapus_produk.php?id=<?= $row['id_obat']; ?>" 
-                                class="btn btn-danger btn-sm" 
-                                onclick="return confirm('Yakin hapus produk ini?');">
-                            Hapus
-                            </a>
 
+                            <a href="hapus_produk.php?id=<?= $row['id_obat']; ?>"
+                               class="btn btn-danger btn-sm"
+                               onclick="return confirm('Yakin hapus produk ini?');">
+                                Hapus
+                            </a>
                         </td>
                     </tr>
 
@@ -86,11 +118,9 @@
         </table>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-        crossorigin="anonymous"></script>
-    <script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
+    <script>
         function loadProducts(filter = "") {
             fetch("../filter/adminFilter.php?filter=" + filter)
                 .then(response => response.text())
@@ -98,11 +128,11 @@
                     document.getElementById("productList").innerHTML = html;
                 });
         }
-        document.getElementById("asc").addEventListener("click", function() {loadProducts("az");});
-        document.getElementById("desc").addEventListener("click", function() {loadProducts("za");});
-        document.getElementById("stok").addEventListener("click", function() {loadProducts("minStok");});
-
+        document.getElementById("asc").addEventListener("click", function() { loadProducts("az"); });
+        document.getElementById("desc").addEventListener("click", function() { loadProducts("za"); });
+        document.getElementById("stok").addEventListener("click", function() { loadProducts("minStok"); });
     </script>
+
 </body>
 
 </html>
