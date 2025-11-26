@@ -23,6 +23,11 @@
         $sql .= " AND nama_obat LIKE '%$search%'";
     }
 
+    // PRODUK TERBARU
+    if ($filter === "latest") {
+        $order = " ORDER BY id_obat DESC";
+    }
+
     // FILTER HARGA TERMURAH
     if ($filter === "murah") {
         $order = " ORDER BY harga ASC";

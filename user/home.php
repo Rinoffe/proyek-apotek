@@ -48,6 +48,7 @@
             <div class="m-3 p-1 rounded" style="background-color: #ffffffff">
                 <h5 class="mb-3"><i class="bi bi-funnel"></i> Filter</h5>
                 <div class="d-grid gap-2 mb-3">
+                    <button id="latest" class="btn btn-outline-success filter-btn">Produk Terbaru</button>
                     <button id="filterMurah" class="btn btn-outline-success filter-btn">Harga Termurah</button>
                     <button id="filterMahal" class="btn btn-outline-success filter-btn">Harga Termahal</button>
                     <button id="asc" class="btn btn-outline-success filter-btn">Nama A-Z</button>
@@ -140,6 +141,7 @@
                 });
         }
 
+        document.getElementById("latest").addEventListener("click", function() {loadProducts("latest");});
         document.getElementById("filterMurah").addEventListener("click", function() {loadProducts("murah");});
         document.getElementById("filterMahal").addEventListener("click", function() {loadProducts("mahal");});
         document.getElementById("asc").addEventListener("click", function() {loadProducts("az");});

@@ -79,7 +79,7 @@ if (isset($_POST['submit'])) {
         <input type="file" name="gambar" class="form-control" required>
 
         <button type="submit" name="submit" class="btn btn-success mt-3">Tambah Produk</button>
-        <a href="produk.php" class="btn btn-secondary mt-3">Batal</a>
+        <a href="produk.php" class="btn btn-secondary mt-3 ms-4">Batal</a>
     </form>
 
 </div>

@@ -107,13 +107,13 @@ if (isset($_POST['submit'])) {
         <input type="number" name="stok" value="<?= $data['stok']; ?>" class="form-control" required>
 
         <label class="mt-3">Gambar Saat Ini</label><br>
-        <img src="../images/<?= $data['gambar']; ?>" width="150" class="border mb-3">
+        <img src="../images/<?= $data['gambar']; ?>" width="150" class="border mb-3"><br>
 
         <label class="mt-3">Ganti Gambar (opsional)</label>
         <input type="file" name="gambar" class="form-control">
 
         <button type="submit" name="submit" class="btn btn-success mt-3">Simpan Perubahan</button>
-        <a href="produk.php" class="btn btn-secondary mt-3">Batal</a>
+        <a href="produk.php" class="btn btn-secondary mt-3 ms-4">Batal</a>
     </form>
 </div>
 

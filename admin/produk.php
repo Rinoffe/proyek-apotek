@@ -8,22 +8,18 @@ $username = $_SESSION['username'];
 
 include "../connection.php";
 
-// =========================================
-//  FITUR TAMBAH STOK LANGSUNG (nambah 1)
-// =========================================
-if (isset($_GET['tambah_stok'])) {
-    $id = $_GET['tambah_stok'];
+// TAMBAH STOK PRODUK
+if (isset($_POST['tambah_stok'])) {
+    $id = $_POST['id'];
+    $tambah_stok = $_POST['tambah_stok'];
 
     // Ambil stok lama
     $q = mysqli_query($connect, "SELECT stok FROM obat WHERE id_obat='$id'");
     $d = mysqli_fetch_assoc($q);
-    $stok_baru = $d['stok'] + 1;
+    $stok_baru = $d['stok'] + $tambah_stok;
 
     // Update stok
     mysqli_query($connect, "UPDATE obat SET stok='$stok_baru' WHERE id_obat='$id'");
-
-    echo "<script>window.location='produk.php';</script>";
-    exit;
 }
 ?>
 
@@ -95,11 +91,11 @@ if (isset($_GET['tambah_stok'])) {
                         <td><?= $row['stok']; ?></td>
 
                         <td>
-                            <!-- Tombol tetap "Tambah" -->
-                            <a href="produk.php?tambah_stok=<?= $row['id_obat']; ?>" 
-                               class="btn btn-warning btn-sm">
-                                Tambah
-                            </a>
+                            <form action="produk.php" method="POST" class="d-flex align-items-center gap-2">
+                                <input type="number" class="form-control form-control-sm" name="tambah_stok" min="1" style="width: 70px;">
+                                <input type="hidden" name="id" value="<?= $row['id_obat']; ?>">
+                                <button class="btn btn-warning btn-sm">Tambah</button>
+                            </form>
                         </td>
 
                         <td>

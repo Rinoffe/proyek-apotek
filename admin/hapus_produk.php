@@ -19,7 +19,7 @@
     $data = mysqli_fetch_assoc($query);
     $gambar = $data['gambar'];
 
-    // Hapus file gambar jika ada
+    // Hapus file gambar
     if ($gambar != "" && file_exists("../uploads/" . $gambar)) {
         unlink("../images/" . $gambar);
     }

@@ -32,18 +32,21 @@
             <td><?= $row['stok']; ?></td>
 
             <td>
-                <a href="tambah-stok.php?id=<?= $row['id_obat']; ?>" class="btn btn-warning btn-sm">Tambah</a>
+                <form action="produk.php" method="POST" class="d-flex align-items-center gap-2">
+                    <input type="number" class="form-control form-control-sm" name="tambah_stok" min="1" style="width: 70px;">
+                    <input type="hidden" name="id" value="<?= $row['id_obat']; ?>">
+                    <button class="btn btn-warning btn-sm">Tambah</button>
+                </form>
             </td>
 
             <td>
                 <a href="edit_produk.php?id=<?= $row['id_obat']; ?>" class="btn btn-primary btn-sm">Edit</a>
-                <a href="hapus_produk.php?id=<?= $row['id_obat']; ?>" 
-                    class="btn btn-danger btn-sm" 
-                    onclick="return confirm('Yakin hapus produk ini?');">
-                Hapus
-                </a>
 
+                <a href="hapus_produk.php?id=<?= $row['id_obat']; ?>"
+                    class="btn btn-danger btn-sm"
+                    onclick="return confirm('Yakin hapus produk ini?');">
+                    Hapus
+                </a>
             </td>
         </tr>
-
 <?php } ?>
