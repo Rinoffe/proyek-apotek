@@ -90,7 +90,7 @@ if (isset($_POST['submit'])) {
     <?php include ('adminHeader.php'); ?>
 
 <div class="container m-4 mx-auto">
-    <h3>Edit Produk</h3>
+    <h3 class="text-center">Edit Produk</h3>
     <form action="edit_produk.php" method="POST" enctype="multipart/form-data">
 
         <input type="hidden" name="id" value="<?= $data['id_obat']; ?>">

@@ -59,7 +59,7 @@ if (isset($_POST['submit'])) {
     <?php include ('adminHeader.php'); ?>
 
 <div class="container m-4 mx-auto">
-    <h3>Tambah Produk</h3>
+    <h3 class="text-center">Tambah Produk</h3>
 
     <form action="" method="POST" enctype="multipart/form-data">
 
