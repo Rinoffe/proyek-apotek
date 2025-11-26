@@ -43,7 +43,7 @@
 
             <?php 
                 include ('../connection.php');
-                $sql = "SELECT * FROM transaksi ORDER BY id_transaksi DESC";
+                $sql = "SELECT * FROM transaksi ORDER BY id_transaksi ASC";
                 $query = mysqli_query($connect, $sql);
 
                 while ($data = mysqli_fetch_array($query)){ ?>
