@@ -61,7 +61,8 @@
             $sql = "SELECT h.id_obat, o.nama_obat, o.harga, h.qty, o.stok, o.gambar, h.tanggal, h.metode_pembayaran
                     FROM obat o
                     JOIN history h ON o.id_obat = h.id_obat
-                    WHERE h.username = '$_SESSION[username]'";
+                    WHERE h.username = '$_SESSION[username]'
+                    ORDER BY h.tanggal DESC";
             $query = mysqli_query($connect, $sql);
 
             $total = 0;
