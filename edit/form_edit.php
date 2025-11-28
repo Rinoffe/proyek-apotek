@@ -9,8 +9,10 @@
 
         if ($_SESSION['role'] == 'admin'){
             $kembali = "../admin/produk.php";
+            $edit = "../admin/editAdmin.php";
         } else {
             $kembali = "../user/home.php";
+            $edit = "../user/editUser.php";
         }
         
         if (!empty($message)){
@@ -20,7 +22,7 @@
     ?>
 
     <div class="p-4 border rounded shadow">
-        <form action="editUser.php" method="POST">
+        <form action="<?= $edit ?>" method="POST">
             <div class="mb-3">
                 <label for="username" class="form-label fw-bold">Username</label>
                 <input type="text" class="form-control bg-light" name="username" value="<?=$data['username']?>" readonly>

@@ -77,7 +77,7 @@
                 <a href="produk.php?id=<?=$data['id_obat']?>">
                     <h5 class="mb-1"><?=$data['nama_obat']?></h5>
                 </a>
-                <p class="m-0"><?=$data['stok']?> x Rp. <?=number_format($data['harga'], 0, ',', '.')?></p>
+                <p class="m-0"><?=$data['qty']?> x Rp. <?=number_format($data['harga'], 0, ',', '.')?></p>
                 <p class="fw-bold m-0">Total: Rp <?=number_format($total, 0, ',', '.')?></p>
             </div>
             <div class="d-flex flex-column align-items-end p-2">
