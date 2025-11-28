@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 26, 2025 at 03:54 AM
+-- Generation Time: Nov 28, 2025 at 02:39 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -34,15 +34,6 @@ CREATE TABLE `cart` (
   `qty` int(11) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `cart`
---
-
-INSERT INTO `cart` (`id_cart`, `username`, `id_obat`, `qty`) VALUES
-(7, 'Reno', 1, 10),
-(18, 'rahma', 9, 1),
-(19, 'rahma', 8, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -58,6 +49,15 @@ CREATE TABLE `history` (
   `lokasi` text NOT NULL,
   `metode_pembayaran` enum('Tunai','Transfer') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `history`
+--
+
+INSERT INTO `history` (`username`, `id_obat`, `nama_obat`, `qty`, `tanggal`, `lokasi`, `metode_pembayaran`) VALUES
+('rahma', 2, 'Amoxicillin 500mg', 1, '2025-11-26 01:57:26', 'Nitikan', 'Transfer'),
+('rahma', 1, 'Paracetamol 500mg', 1, '2025-11-26 01:57:26', 'Nitikan', 'Transfer'),
+('rahma', 6, 'Promag Tablet', 2, '2025-11-26 01:57:26', 'Nitikan', 'Transfer');
 
 -- --------------------------------------------------------
 
@@ -79,14 +79,14 @@ CREATE TABLE `obat` (
 --
 
 INSERT INTO `obat` (`id_obat`, `gambar`, `nama_obat`, `deskripsi`, `stok`, `harga`) VALUES
-(1, 'paracetamol.jpg', 'Paracetamol 500mg', 'Obat untuk menurunkan demam dan meredakan nyeri kepala, otot, serta sakit gigi.', 120, 1500),
-(2, 'amoxicillin.jpg', 'Amoxicillin 500mg', 'Antibiotik untuk mengobati infeksi bakteri seperti ISPA, infeksi kulit, dan telinga.', 79, 3000),
+(1, 'paracetamol.jpg', 'Paracetamol 500mg', 'Obat untuk menurunkan demam dan meredakan nyeri kepala, otot, serta sakit gigi.', 110, 1500),
+(2, 'amoxicillin.jpeg', 'Amoxicillin 500mg', 'Antibiotik untuk mengobati infeksi bakteri seperti ISPA, infeksi kulit, dan telinga.', 79, 3000),
 (3, 'vitamin_c.jpg', 'Vitamin C 1000mg', 'Suplemen untuk meningkatkan daya tahan tubuh dan menjaga kesehatan kulit.', 150, 2500),
-(4, 'salbutamol.jpg', 'Salbutamol Inhaler', 'Obat bronkodilator untuk meredakan sesak napas akibat asma dan PPOK.', 60, 35000),
+(4, 'salbutamol.jpeg', 'Salbutamol Inhaler', 'Obat bronkodilator untuk meredakan sesak napas akibat asma dan PPOK.', 60, 35000),
 (5, 'betadine.jpg', 'Betadine Antiseptic Solution 30ml', 'Cairan antiseptik untuk membersihkan luka dan mencegah infeksi.', 90, 12000),
 (6, 'promag.jpg', 'Promag Tablet', 'Obat antasida yang cepat meredakan gejala sakit maag, perut kembung, dan rasa perih.', 18, 9000),
-(8, 'tolak_angin_cair.jpg', 'Tolak Angin Cair', 'Obat herbal terstandar untuk masuk angin, perut kembung, mual, dan sakit kepala.', 10, 18000),
-(9, 'kayu_putih.jpeg', 'Minyak Kayu Putih Cap Lang', 'Minyak serbaguna untuk menghangatkan tubuh, meredakan sakit perut, dan gigitan serangga.', 7, 25000),
+(8, 'tolak_angin_cair.jpg', 'Tolak Angin Cair', 'Obat herbal terstandar untuk masuk angin, perut kembung, mual, dan sakit kepala.', 9, 18000),
+(9, 'kayu_putih.jpeg', 'Minyak Kayu Putih Cap Lang', 'Minyak serbaguna untuk menghangatkan tubuh, meredakan sakit perut, dan gigitan serangga.', 5, 25000),
 (10, '1764125407_mantap.jpeg', 'Hansaplast 1 pak isi 6', 'Plester hypoallergenic, memiliki kemungkinan yang sangat kecil untuk membuat kulit iritasi untuk Anda yang memiliki kulit sensitif. Kecocokan terhadap kulit telah diuji secara dermatologi.', 4, 16000);
 
 -- --------------------------------------------------------
@@ -109,7 +109,9 @@ CREATE TABLE `transaksi` (
 --
 
 INSERT INTO `transaksi` (`id_transaksi`, `tanggal`, `username`, `lokasi`, `metode_pembayaran`, `status`) VALUES
-(5, '2025-11-25 19:40:44', 'rahma', 'Nitikan', 'Transfer', 'Dikirim');
+(6, '2025-11-26 01:55:23', 'rahma', 'Magelang', 'Transfer', 'Dikirim'),
+(7, '2025-11-26 02:10:40', 'Reno', 'Tambak Bayan', 'Tunai', 'Dikemas'),
+(8, '2025-11-26 02:22:25', 'Reno', 'Tambak Bayan', 'Tunai', 'Dikemas');
 
 -- --------------------------------------------------------
 
@@ -130,9 +132,10 @@ CREATE TABLE `transaksi_detail` (
 --
 
 INSERT INTO `transaksi_detail` (`id_detail`, `id_transaksi`, `username`, `id_obat`, `qty`) VALUES
-(6, 5, 'rahma', 2, 1),
-(7, 5, 'rahma', 1, 1),
-(8, 5, 'rahma', 6, 2);
+(9, 6, 'rahma', 9, 1),
+(10, 6, 'rahma', 8, 1),
+(11, 7, 'Reno', 1, 10),
+(12, 8, 'Reno', 9, 1);
 
 -- --------------------------------------------------------
 
@@ -210,7 +213,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id_cart` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_cart` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `obat`
@@ -222,13 +225,13 @@ ALTER TABLE `obat`
 -- AUTO_INCREMENT for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `transaksi_detail`
 --
 ALTER TABLE `transaksi_detail`
-  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Constraints for dumped tables
